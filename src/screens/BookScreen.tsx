@@ -10,19 +10,55 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
+import { DateTimePickerModal } from '../components/DateTimePickerModal';
+import { LocationPickerModal } from '../components/LocationPickerModal';
 
 export const BookScreen: React.FC = () => {
   const [sameLocation, setSameLocation] = useState(true);
   const [pickupLocation, setPickupLocation] = useState('');
   const [dropoffLocation, setDropoffLocation] = useState('');
-  const [pickupDate, setPickupDate] = useState('');
-  const [pickupTime, setPickupTime] = useState('');
-  const [dropoffDate, setDropoffDate] = useState('');
-  const [dropoffTime, setDropoffTime] = useState('');
+
+  // Pickup date/time
+  const [pickupDate, setPickupDate] = useState<Date | null>(null);
+  const [pickupTime, setPickupTime] = useState('10:00 AM');
+
+  // Dropoff date/time
+  const [dropoffDate, setDropoffDate] = useState<Date | null>(null);
+  const [dropoffTime, setDropoffTime] = useState('10:00 AM');
+
   const [driverAge, setDriverAge] = useState('');
   const [showAgeDropdown, setShowAgeDropdown] = useState(false);
+  const [showDateTimePicker, setShowDateTimePicker] = useState(false);
+  const [showLocationPicker, setShowLocationPicker] = useState(false);
 
   const ageOptions = ['18-19', '20-24', '25+'];
+
+  const formatDate = (date: Date | null) => {
+    if (!date) return 'Select Date';
+    return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
+  };
+
+  const handleDateTimeConfirm = (
+    pickup: Date,
+    dropoff: Date,
+    pickupT: string,
+    dropoffT: string
+  ) => {
+    setPickupDate(pickup);
+    setDropoffDate(dropoff);
+    setPickupTime(pickupT);
+    setDropoffTime(dropoffT);
+  };
+
+  const handleLocationConfirm = (
+    pickup: string,
+    dropoff: string,
+    same: boolean
+  ) => {
+    setPickupLocation(pickup);
+    setDropoffLocation(dropoff);
+    setSameLocation(same);
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -32,32 +68,37 @@ export const BookScreen: React.FC = () => {
         showsVerticalScrollIndicator={false}
       >
         <View style={styles.header}>
-          <Text style={styles.title}>Book Your Ride</Text>
+          <Text style={styles.title}>LET'S GET STARTED</Text>
           <Text style={styles.subtitle}>Get started by filling in the details below</Text>
         </View>
 
         <View style={styles.form}>
           {/* Location Inputs */}
           <View style={styles.inputGroup}>
-            <Text style={styles.label}>
-              {sameLocation ? 'Pickup and Dropoff Location' : 'Pickup Location'}
-            </Text>
-
             {/* Pickup Location Input */}
-            <View style={[styles.inputWrapper, !sameLocation && styles.inputWrapperTop]}>
+            <TouchableOpacity
+              style={[styles.inputWrapper, !sameLocation && styles.inputWrapperTop]}
+              onPress={() => setShowLocationPicker(true)}
+              activeOpacity={1}
+            >
               <Ionicons name="location-outline" size={20} color="#888" style={styles.inputIcon} />
               <TextInput
                 style={styles.input}
-                placeholder="Enter pickup location"
+                placeholder={sameLocation ? 'Pickup and Dropoff Location' : 'Pickup Location'}
                 placeholderTextColor="#666"
                 value={pickupLocation}
                 onChangeText={setPickupLocation}
+                onFocus={() => setShowLocationPicker(true)}
               />
-            </View>
+            </TouchableOpacity>
 
             {/* Dropoff Location Input (conditionally shown when toggle is OFF) */}
             {!sameLocation && (
-              <View style={styles.inputWrapperBottom}>
+              <TouchableOpacity
+                style={styles.inputWrapperBottom}
+                onPress={() => setShowLocationPicker(true)}
+                activeOpacity={1}
+              >
                 <Ionicons name="location-outline" size={20} color="#888" style={styles.inputIcon} />
                 <TextInput
                   style={styles.input}
@@ -65,8 +106,9 @@ export const BookScreen: React.FC = () => {
                   placeholderTextColor="#666"
                   value={dropoffLocation}
                   onChangeText={setDropoffLocation}
+                  onFocus={() => setShowLocationPicker(true)}
                 />
-              </View>
+              </TouchableOpacity>
             )}
           </View>
 
@@ -82,105 +124,82 @@ export const BookScreen: React.FC = () => {
             <Text style={styles.toggleLabel}>Return to same location</Text>
           </View>
 
-          {/* Pickup Details */}
-          <View style={styles.sectionHeader}>
-            <Text style={styles.sectionTitle}>Pickup Details</Text>
-          </View>
+          {/* Location Picker Modal */}
+          <LocationPickerModal
+            visible={showLocationPicker}
+            onClose={() => setShowLocationPicker(false)}
+            onConfirm={handleLocationConfirm}
+            initialPickup={pickupLocation}
+            initialDropoff={dropoffLocation}
+            initialSameLocation={sameLocation}
+          />
 
-          <View style={styles.row}>
-            <View style={[styles.inputGroup, styles.halfWidth]}>
-              <Text style={styles.label}>Date</Text>
-              <View style={styles.inputWrapper}>
-                <Ionicons name="calendar-outline" size={20} color="#888" style={styles.inputIcon} />
-                <TextInput
-                  style={styles.input}
-                  placeholder="MM/DD/YYYY"
-                  placeholderTextColor="#666"
-                  value={pickupDate}
-                  onChangeText={setPickupDate}
-                />
-              </View>
-            </View>
-
-            <View style={[styles.inputGroup, styles.halfWidth]}>
-              <Text style={styles.label}>Time</Text>
-              <View style={styles.inputWrapper}>
-                <Ionicons name="time-outline" size={20} color="#888" style={styles.inputIcon} />
-                <TextInput
-                  style={styles.input}
-                  placeholder="HH:MM"
-                  placeholderTextColor="#666"
-                  value={pickupTime}
-                  onChangeText={setPickupTime}
-                />
-              </View>
-            </View>
-          </View>
-
-          {/* Dropoff Details */}
-          <View style={styles.sectionHeader}>
-            <Text style={styles.sectionTitle}>Dropoff Details</Text>
-          </View>
-
-          <View style={styles.row}>
-            <View style={[styles.inputGroup, styles.halfWidth]}>
-              <Text style={styles.label}>Date</Text>
-              <View style={styles.inputWrapper}>
-                <Ionicons name="calendar-outline" size={20} color="#888" style={styles.inputIcon} />
-                <TextInput
-                  style={styles.input}
-                  placeholder="MM/DD/YYYY"
-                  placeholderTextColor="#666"
-                  value={dropoffDate}
-                  onChangeText={setDropoffDate}
-                />
-              </View>
-            </View>
-
-            <View style={[styles.inputGroup, styles.halfWidth]}>
-              <Text style={styles.label}>Time</Text>
-              <View style={styles.inputWrapper}>
-                <Ionicons name="time-outline" size={20} color="#888" style={styles.inputIcon} />
-                <TextInput
-                  style={styles.input}
-                  placeholder="HH:MM"
-                  placeholderTextColor="#666"
-                  value={dropoffTime}
-                  onChangeText={setDropoffTime}
-                />
-              </View>
-            </View>
-          </View>
-
-          {/* Driver Age Dropdown */}
+          {/* Pickup & Dropoff Details */}
           <View style={styles.inputGroup}>
-            <Text style={styles.label}>Driver Age</Text>
+            <Text style={styles.label}>Pickup & Dropoff</Text>
             <TouchableOpacity
-              style={styles.dropdown}
+              style={styles.dateTimeButton}
+              onPress={() => setShowDateTimePicker(true)}
+            >
+              <View style={styles.dateTimeButtonContent}>
+                <Ionicons name="calendar-outline" size={20} color="#888" />
+                <View style={styles.dateTimeTexts}>
+                  <Text style={styles.dateTimeMainText}>
+                    {pickupDate && dropoffDate
+                      ? `${formatDate(pickupDate)} - ${formatDate(dropoffDate)}`
+                      : 'Select Dates & Times'}
+                  </Text>
+                  {pickupDate && dropoffDate && (
+                    <Text style={styles.dateTimeSubText}>
+                      {pickupTime} → {dropoffTime}
+                    </Text>
+                  )}
+                </View>
+                <Ionicons name="chevron-forward" size={20} color="#888" />
+              </View>
+            </TouchableOpacity>
+          </View>
+
+          {/* Date Time Picker Modal */}
+          <DateTimePickerModal
+            visible={showDateTimePicker}
+            onClose={() => setShowDateTimePicker(false)}
+            onConfirm={handleDateTimeConfirm}
+          />
+
+          {/* Driver Age */}
+          <View style={styles.inputGroup}>
+            <TouchableOpacity
+              style={styles.ageButton}
               onPress={() => setShowAgeDropdown(!showAgeDropdown)}
             >
-              <Text style={driverAge ? styles.dropdownTextSelected : styles.dropdownText}>
-                {driverAge || 'Select age range'}
-              </Text>
-              <Ionicons
-                name={showAgeDropdown ? 'chevron-up' : 'chevron-down'}
-                size={20}
-                color="#888"
-              />
+              <View style={styles.ageButtonContent}>
+                <Ionicons name="person-outline" size={20} color="#888" />
+                <View style={styles.ageTexts}>
+                  <Text style={styles.ageMainText}>
+                    {driverAge || 'Driver Age'}
+                  </Text>
+                </View>
+                <Ionicons
+                  name={showAgeDropdown ? 'chevron-up' : 'chevron-down'}
+                  size={20}
+                  color="#888"
+                />
+              </View>
             </TouchableOpacity>
 
             {showAgeDropdown && (
-              <View style={styles.dropdownMenu}>
+              <View style={styles.ageDropdownMenu}>
                 {ageOptions.map((option) => (
                   <TouchableOpacity
                     key={option}
-                    style={styles.dropdownItem}
+                    style={styles.ageDropdownItem}
                     onPress={() => {
                       setDriverAge(option);
                       setShowAgeDropdown(false);
                     }}
                   >
-                    <Text style={styles.dropdownItemText}>{option}</Text>
+                    <Text style={styles.ageDropdownItemText}>{option}</Text>
                     {driverAge === option && (
                       <Ionicons name="checkmark" size={20} color="#5B67F1" />
                     )}
@@ -191,8 +210,14 @@ export const BookScreen: React.FC = () => {
           </View>
 
           {/* Search Button */}
-          <TouchableOpacity style={styles.searchButton}>
-            <Text style={styles.searchButtonText}>Search Available Cars</Text>
+          <TouchableOpacity
+            style={[
+              styles.searchButton,
+              (!pickupLocation || !pickupDate || !dropoffDate || !driverAge) && styles.searchButtonDisabled
+            ]}
+            disabled={!pickupLocation || !pickupDate || !dropoffDate || !driverAge}
+          >
+            <Text style={styles.searchButtonText}>SELECT YOUR VEHICLE</Text>
             <Ionicons name="arrow-forward" size={20} color="#fff" />
           </TouchableOpacity>
         </View>
@@ -288,14 +313,17 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     marginLeft: 8,
   },
-  sectionHeader: {
-    marginBottom: 16,
-    marginTop: 8,
+  detailsRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginBottom: 8,
   },
-  sectionTitle: {
-    fontSize: 18,
-    fontWeight: '700',
-    color: '#fff',
+  detailsLabel: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#aaa',
+    flex: 1,
+    textAlign: 'center',
   },
   row: {
     flexDirection: 'row',
@@ -304,26 +332,54 @@ const styles = StyleSheet.create({
   halfWidth: {
     flex: 1,
   },
-  dropdown: {
+  dateTimeContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
+    backgroundColor: '#1a1a1a',
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: '#333',
+    paddingHorizontal: 10,
+    height: 44,
+  },
+  miniIcon: {
+    marginRight: 4,
+  },
+  miniInput: {
+    flex: 1,
+    fontSize: 13,
+    color: '#fff',
+    paddingVertical: 0,
+  },
+  divider: {
+    width: 1,
+    height: 20,
+    backgroundColor: '#444',
+    marginHorizontal: 6,
+  },
+  ageButton: {
     backgroundColor: '#1a1a1a',
     borderRadius: 12,
     borderWidth: 1,
     borderColor: '#333',
+    paddingVertical: 16,
     paddingHorizontal: 16,
-    height: 56,
   },
-  dropdownText: {
-    fontSize: 16,
-    color: '#666',
+  ageButtonContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
-  dropdownTextSelected: {
+  ageTexts: {
+    flex: 1,
+    marginLeft: 12,
+  },
+  ageMainText: {
     fontSize: 16,
     color: '#fff',
+    fontWeight: '500',
   },
-  dropdownMenu: {
+  ageDropdownMenu: {
     backgroundColor: '#1a1a1a',
     borderRadius: 12,
     borderWidth: 1,
@@ -331,18 +387,45 @@ const styles = StyleSheet.create({
     marginTop: 8,
     overflow: 'hidden',
   },
-  dropdownItem: {
+  ageDropdownItem: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 16,
-    paddingVertical: 16,
+    paddingVertical: 14,
     borderBottomWidth: 1,
-    borderBottomColor: '#333',
+    borderBottomColor: '#2a2a2a',
   },
-  dropdownItemText: {
+  ageDropdownItemText: {
+    fontSize: 15,
+    color: '#fff',
+  },
+  dateTimeButton: {
+    backgroundColor: '#1a1a1a',
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: '#333',
+    paddingVertical: 16,
+    paddingHorizontal: 16,
+  },
+  dateTimeButtonContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  dateTimeTexts: {
+    flex: 1,
+    marginLeft: 12,
+  },
+  dateTimeMainText: {
     fontSize: 16,
     color: '#fff',
+    fontWeight: '500',
+  },
+  dateTimeSubText: {
+    fontSize: 13,
+    color: '#888',
+    marginTop: 4,
   },
   searchButton: {
     flexDirection: 'row',
@@ -361,6 +444,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowRadius: 12,
     elevation: 8,
+  },
+  searchButtonDisabled: {
+    backgroundColor: '#333',
+    shadowOpacity: 0,
   },
   searchButtonText: {
     fontSize: 17,
