@@ -68,7 +68,7 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({ navigation }) => {
   }, []);
 
   const handleGuestEntry = () => {
-    navigation.navigate('Browse');
+    navigation.navigate('MainTabs');
   };
 
   const handleScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
