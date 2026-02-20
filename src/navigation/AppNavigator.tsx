@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { LandingScreen } from '../screens/LandingScreen';
-import { BrowseScreen } from '../screens/BrowseScreen';
+import { MainTabNavigator } from './MainTabNavigator';
 import { CarDetailsScreen } from '../screens/CarDetailsScreen';
 import { RootStackParamList } from './types';
 
@@ -20,7 +20,7 @@ export const AppNavigator = () => {
           }}
         >
           <Stack.Screen name="Landing" component={LandingScreen} />
-          <Stack.Screen name="Browse" component={BrowseScreen} />
+          <Stack.Screen name="MainTabs" component={MainTabNavigator} />
           <Stack.Screen name="CarDetails" component={CarDetailsScreen} />
         </Stack.Navigator>
       </NavigationContainer>

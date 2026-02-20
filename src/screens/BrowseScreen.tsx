@@ -7,6 +7,7 @@ import {
   StatusBar,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { CarCard } from '../components/CarCard';
 import { SearchBar } from '../components/SearchBar';
@@ -15,15 +16,12 @@ import { getCarsWithListings } from '../data/mockData';
 import { CarWithListings } from '../types';
 import { RootStackParamList } from '../navigation/types';
 
-type BrowseScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'Browse'>;
-
-interface BrowseScreenProps {
-  navigation: BrowseScreenNavigationProp;
-}
+type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
 const CATEGORIES = ['All', 'Economy', 'Luxury', 'SUV', 'Electric', 'Adventure', 'Sports'];
 
-export const BrowseScreen: React.FC<BrowseScreenProps> = ({ navigation }) => {
+export const BrowseScreen: React.FC = () => {
+  const navigation = useNavigation<NavigationProp>();
   const [selectedCategory, setSelectedCategory] = useState('All');
   const allCars = getCarsWithListings();
 
@@ -81,6 +79,6 @@ const styles = StyleSheet.create({
     color: '#aaa',
   },
   listContent: {
-    paddingBottom: 16,
+    paddingBottom: 80,
   },
 });

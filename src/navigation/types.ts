@@ -2,8 +2,14 @@ import { CarWithListings } from '../types';
 
 export type RootStackParamList = {
   Landing: undefined;
-  Browse: undefined;
+  MainTabs: undefined;
   CarDetails: {
     car: CarWithListings;
   };
+};
+
+export type MainTabParamList = {
+  Search: undefined;
+  Reservations: undefined;
+  Account: undefined;
 };
