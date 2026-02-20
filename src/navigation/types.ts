@@ -9,7 +9,7 @@ export type RootStackParamList = {
 };
 
 export type MainTabParamList = {
-  Search: undefined;
+  Book: undefined;
   Reservations: undefined;
   Account: undefined;
 };

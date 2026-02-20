@@ -1,7 +1,7 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
-import { BrowseScreen } from '../screens/BrowseScreen';
+import { BookScreen } from '../screens/BookScreen';
 import { ReservationsScreen } from '../screens/ReservationsScreen';
 import { AccountScreen } from '../screens/AccountScreen';
 import { MainTabParamList } from './types';
@@ -13,6 +13,8 @@ export const MainTabNavigator = () => {
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
+        lazy: false,
+        tabBarHideOnKeyboard: true,
         tabBarStyle: {
           position: 'absolute',
           backgroundColor: '#5B67F1',
@@ -43,12 +45,12 @@ export const MainTabNavigator = () => {
       }}
     >
       <Tab.Screen
-        name="Search"
-        component={BrowseScreen}
+        name="Book"
+        component={BookScreen}
         options={{
-          tabBarLabel: 'Search',
+          tabBarLabel: 'Book',
           tabBarIcon: ({ color, focused }) => (
-            <Ionicons name={focused ? 'search' : 'search-outline'} size={24} color={color} />
+            <Ionicons name={focused ? 'car' : 'car-outline'} size={24} color={color} />
           ),
         }}
       />
