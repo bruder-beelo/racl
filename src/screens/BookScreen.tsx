@@ -88,7 +88,8 @@ export const BookScreen: React.FC = () => {
                 placeholderTextColor="#666"
                 value={pickupLocation}
                 onChangeText={setPickupLocation}
-                onFocus={() => setShowLocationPicker(true)}
+                editable={false}
+                onPressIn={() => setShowLocationPicker(true)}
               />
             </TouchableOpacity>
 
@@ -106,7 +107,8 @@ export const BookScreen: React.FC = () => {
                   placeholderTextColor="#666"
                   value={dropoffLocation}
                   onChangeText={setDropoffLocation}
-                  onFocus={() => setShowLocationPicker(true)}
+                  editable={false}
+                  onPressIn={() => setShowLocationPicker(true)}
                 />
               </TouchableOpacity>
             )}
