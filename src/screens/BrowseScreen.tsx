@@ -79,6 +79,6 @@ const styles = StyleSheet.create({
     color: '#aaa',
   },
   listContent: {
-    paddingBottom: 16,
+    paddingBottom: 80,
   },
 });
