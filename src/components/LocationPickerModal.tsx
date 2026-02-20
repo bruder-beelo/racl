@@ -90,7 +90,14 @@ export const LocationPickerModal: React.FC<LocationPickerModalProps> = ({
             </View>
 
             {/* Use Current Location Button */}
-            <TouchableOpacity style={styles.currentLocationButton}>
+            <TouchableOpacity
+              style={styles.currentLocationButton}
+              onPress={() => {
+                setPickupLocation('Boston');
+                onConfirm('Boston', sameLocation ? 'Boston' : dropoffLocation, sameLocation);
+                onClose();
+              }}
+            >
               <Ionicons name="navigate" size={20} color="#5B67F1" />
               <Text style={styles.currentLocationText}>Use My Current Location</Text>
             </TouchableOpacity>
