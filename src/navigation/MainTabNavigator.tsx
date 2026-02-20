@@ -17,7 +17,7 @@ export const MainTabNavigator = () => {
           position: 'absolute',
           backgroundColor: '#5B67F1',
           borderTopWidth: 0,
-          bottom: 12,
+          bottom: 45,
           left: 12,
           right: 12,
           height: 55,
