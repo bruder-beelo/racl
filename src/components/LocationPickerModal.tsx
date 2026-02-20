@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -30,6 +30,15 @@ export const LocationPickerModal: React.FC<LocationPickerModalProps> = ({
   const [pickupLocation, setPickupLocation] = useState(initialPickup);
   const [dropoffLocation, setDropoffLocation] = useState(initialDropoff);
   const [sameLocation, setSameLocation] = useState(initialSameLocation);
+
+  // Sync state with props when modal becomes visible
+  useEffect(() => {
+    if (visible) {
+      setPickupLocation(initialPickup);
+      setDropoffLocation(initialDropoff);
+      setSameLocation(initialSameLocation);
+    }
+  }, [visible, initialPickup, initialDropoff, initialSameLocation]);
 
   const handleConfirm = () => {
     if (pickupLocation.trim()) {

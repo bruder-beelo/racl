@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -25,6 +25,17 @@ export const DateTimePickerModal: React.FC<DateTimePickerModalProps> = ({
   const [pickupTime, setPickupTime] = useState('10:00 AM');
   const [dropoffTime, setDropoffTime] = useState('10:00 AM');
   const [currentMonth, setCurrentMonth] = useState(new Date());
+
+  // Reset state when modal becomes visible
+  useEffect(() => {
+    if (visible) {
+      setSelectedPickupDate(null);
+      setSelectedDropoffDate(null);
+      setPickupTime('10:00 AM');
+      setDropoffTime('10:00 AM');
+      setCurrentMonth(new Date());
+    }
+  }, [visible]);
 
   const timeOptions = [
     '9:00 AM', '10:00 AM', '11:00 AM', '12:00 PM',
@@ -75,6 +86,20 @@ export const DateTimePickerModal: React.FC<DateTimePickerModalProps> = ({
 
   const handleConfirm = () => {
     if (selectedPickupDate && selectedDropoffDate) {
+      // Check if same day booking
+      const isSameDay = selectedPickupDate.toDateString() === selectedDropoffDate.toDateString();
+
+      // Validate dropoff time is after pickup time on same day
+      if (isSameDay) {
+        const pickupIndex = timeOptions.indexOf(pickupTime);
+        const dropoffIndex = timeOptions.indexOf(dropoffTime);
+
+        if (dropoffIndex <= pickupIndex) {
+          // Don't confirm - validation will prevent this
+          return;
+        }
+      }
+
       onConfirm(selectedPickupDate, selectedDropoffDate, pickupTime, dropoffTime);
       onClose();
     }
@@ -230,25 +255,39 @@ export const DateTimePickerModal: React.FC<DateTimePickerModalProps> = ({
                   style={styles.timeScroll}
                   contentContainerStyle={styles.timeScrollContent}
                 >
-                  {timeOptions.map((time) => (
-                    <TouchableOpacity
-                      key={time}
-                      style={[
-                        styles.timeChip,
-                        dropoffTime === time && styles.timeChipSelected,
-                      ]}
-                      onPress={() => setDropoffTime(time)}
-                    >
-                      <Text
+                  {timeOptions.map((time) => {
+                    // Check if same day booking
+                    const isSameDay = selectedPickupDate && selectedDropoffDate &&
+                      selectedPickupDate.toDateString() === selectedDropoffDate.toDateString();
+
+                    // Disable times that are before or equal to pickup time on same day
+                    const pickupIndex = timeOptions.indexOf(pickupTime);
+                    const currentIndex = timeOptions.indexOf(time);
+                    const isDisabled = isSameDay && currentIndex <= pickupIndex;
+
+                    return (
+                      <TouchableOpacity
+                        key={time}
                         style={[
-                          styles.timeChipText,
-                          dropoffTime === time && styles.timeChipTextSelected,
+                          styles.timeChip,
+                          dropoffTime === time && styles.timeChipSelected,
+                          isDisabled && styles.timeChipDisabled,
                         ]}
+                        onPress={() => !isDisabled && setDropoffTime(time)}
+                        disabled={isDisabled}
                       >
-                        {time}
-                      </Text>
-                    </TouchableOpacity>
-                  ))}
+                        <Text
+                          style={[
+                            styles.timeChipText,
+                            dropoffTime === time && styles.timeChipTextSelected,
+                            isDisabled && styles.timeChipTextDisabled,
+                          ]}
+                        >
+                          {time}
+                        </Text>
+                      </TouchableOpacity>
+                    );
+                  })}
                 </ScrollView>
               </View>
             </View>
@@ -421,6 +460,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#5B67F1',
     borderColor: '#5B67F1',
   },
+  timeChipDisabled: {
+    backgroundColor: '#1a1a1a',
+    borderColor: '#222',
+    opacity: 0.4,
+  },
   timeChipText: {
     fontSize: 14,
     color: '#888',
@@ -428,6 +472,9 @@ const styles = StyleSheet.create({
   timeChipTextSelected: {
     color: '#fff',
     fontWeight: '600',
+  },
+  timeChipTextDisabled: {
+    color: '#555',
   },
   confirmButton: {
     backgroundColor: '#5B67F1',
