@@ -93,8 +93,8 @@ export const LocationPickerModal: React.FC<LocationPickerModalProps> = ({
             <TouchableOpacity
               style={styles.currentLocationButton}
               onPress={() => {
-                setPickupLocation('Boston');
-                onConfirm('Boston', sameLocation ? 'Boston' : dropoffLocation, sameLocation);
+                setPickupLocation('Boston, MA');
+                onConfirm('Boston, MA', sameLocation ? 'Boston, MA' : dropoffLocation, sameLocation);
                 onClose();
               }}
             >

@@ -4,8 +4,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 export const AccountScreen: React.FC = () => {
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.content}>
+    <SafeAreaView style={styles.container} edges={['top']}>
+      <View style={styles.header}>
         <Text style={styles.title}>Account</Text>
         <Text style={styles.subtitle}>Manage your profile and settings</Text>
       </View>
@@ -18,21 +18,20 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#000',
   },
-  content: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+  header: {
     paddingHorizontal: 24,
-    paddingBottom: 80,
+    paddingTop: 20,
+    paddingBottom: 100,
   },
   title: {
-    fontSize: 28,
+    fontSize: 32,
     fontWeight: '700',
     color: '#fff',
-    marginBottom: 12,
+    marginBottom: 8,
   },
   subtitle: {
     fontSize: 16,
     color: '#888',
+    lineHeight: 24,
   },
 });
