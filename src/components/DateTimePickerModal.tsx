@@ -110,6 +110,15 @@ export const DateTimePickerModal: React.FC<DateTimePickerModalProps> = ({
   };
 
   const prevMonth = () => {
+    const today = new Date();
+    const isAtCurrentMonth = currentMonth.getFullYear() === today.getFullYear() &&
+                             currentMonth.getMonth() === today.getMonth();
+
+    // Don't allow navigating to past months
+    if (isAtCurrentMonth) {
+      return;
+    }
+
     setCurrentMonth(new Date(currentMonth.getFullYear(), currentMonth.getMonth() - 1));
   };
 
@@ -122,6 +131,10 @@ export const DateTimePickerModal: React.FC<DateTimePickerModalProps> = ({
     if (!date) return 'Select';
     return `${date.getMonth() + 1}/${date.getDate()}`;
   };
+
+  const today = new Date();
+  const isAtCurrentMonth = currentMonth.getFullYear() === today.getFullYear() &&
+                           currentMonth.getMonth() === today.getMonth();
 
   const days = getDaysInMonth(currentMonth);
 
@@ -145,8 +158,16 @@ export const DateTimePickerModal: React.FC<DateTimePickerModalProps> = ({
           <ScrollView showsVerticalScrollIndicator={false}>
             {/* Month Navigation */}
             <View style={styles.monthNav}>
-              <TouchableOpacity onPress={prevMonth} style={styles.navButton}>
-                <Ionicons name="chevron-back" size={24} color="#fff" />
+              <TouchableOpacity
+                onPress={prevMonth}
+                style={styles.navButton}
+                disabled={isAtCurrentMonth}
+              >
+                <Ionicons
+                  name="chevron-back"
+                  size={24}
+                  color={isAtCurrentMonth ? '#555' : '#fff'}
+                />
               </TouchableOpacity>
               <Text style={styles.monthText}>
                 {monthNames[currentMonth.getMonth()]} {currentMonth.getFullYear()}
