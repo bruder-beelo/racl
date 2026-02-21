@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import {
   View,
   Text,
@@ -21,7 +21,7 @@ type VehiclesScreenNavigationProp = NativeStackNavigationProp<RootStackParamList
 export const VehiclesScreen: React.FC = () => {
   const navigation = useNavigation<VehiclesScreenNavigationProp>();
   const route = useRoute<VehiclesScreenRouteProp>();
-  const { location, pickupDate, dropoffDate, pickupTime, dropoffTime } = route.params;
+  const { location, pickupDate, dropoffDate } = route.params;
 
   const [showFilters, setShowFilters] = useState(false);
   const [filters, setFilters] = useState<FilterState>({
@@ -31,18 +31,56 @@ export const VehiclesScreen: React.FC = () => {
     vehicleTypes: [],
   });
 
-  const carsWithListings = getCarsWithListings();
+  const carsWithListings = useMemo(() => getCarsWithListings(), []);
+
+  // Convert ISO string dates to Date objects
+  const pickupDateObj = new Date(pickupDate);
+  const dropoffDateObj = new Date(dropoffDate);
 
   // Calculate number of days
-  const daysDiff = Math.max(1, Math.ceil((dropoffDate.getTime() - pickupDate.getTime()) / (1000 * 60 * 60 * 24)));
+  const daysDiff = Math.max(1, Math.ceil((dropoffDateObj.getTime() - pickupDateObj.getTime()) / (1000 * 60 * 60 * 24)));
   const days = daysDiff === 1 ? '1 day' : `${daysDiff} days`;
+
+  // Apply filters
+  const filteredCars = useMemo(() => {
+    return carsWithListings.filter(car => {
+      // Price filter
+      const minPrice = car.listings.length > 0 ? car.listings[0].pricePerDay : 0;
+      if (minPrice < filters.priceRange[0] || minPrice > filters.priceRange[1]) {
+        return false;
+      }
+
+      // Transmission filter
+      if (filters.transmission.length > 0 && !filters.transmission.includes(car.specs.transmission)) {
+        return false;
+      }
+
+      // Passengers filter
+      if (filters.passengers !== 'Any') {
+        const requiredSeats = parseInt(filters.passengers.replace('+', ''));
+        if (car.specs.seats < requiredSeats) {
+          return false;
+        }
+      }
+
+      // Vehicle type filter
+      if (filters.vehicleTypes.length > 0 && !filters.vehicleTypes.includes(car.category)) {
+        return false;
+      }
+
+      return true;
+    });
+  }, [carsWithListings, filters]);
 
   const renderVehicleCard = ({ item }: { item: typeof carsWithListings[0] }) => {
     const minPrice = item.listings.length > 0 ? item.listings[0].pricePerDay : 0;
     const totalPrice = minPrice * daysDiff;
 
     return (
-      <TouchableOpacity style={styles.card}>
+      <TouchableOpacity
+        style={styles.card}
+        onPress={() => navigation.navigate('CarDetails', { car: item })}
+      >
         <Image source={{ uri: item.image }} style={styles.carImage} />
         <View style={styles.cardContent}>
           <View style={styles.cardHeader}>
@@ -111,7 +149,7 @@ export const VehiclesScreen: React.FC = () => {
 
       {/* Vehicle List */}
       <FlatList
-        data={carsWithListings}
+        data={filteredCars}
         renderItem={renderVehicleCard}
         keyExtractor={(item) => item.id}
         contentContainerStyle={styles.listContent}

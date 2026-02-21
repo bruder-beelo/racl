@@ -5,8 +5,8 @@ export type RootStackParamList = {
   MainTabs: undefined;
   Vehicles: {
     location: string;
-    pickupDate: Date;
-    dropoffDate: Date;
+    pickupDate: string;
+    dropoffDate: string;
     pickupTime: string;
     dropoffTime: string;
   };

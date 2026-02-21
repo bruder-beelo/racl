@@ -8,7 +8,7 @@ import {
   ScrollView,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import Slider from '@react-native-community/slider';
+import { RangeSlider } from '@react-native-assets/slider';
 
 interface FiltersModalProps {
   visible: boolean;
@@ -106,47 +106,23 @@ export const FiltersModal: React.FC<FiltersModalProps> = ({
             <View style={styles.section}>
               <Text style={styles.sectionTitle}>Price per Day</Text>
 
-              {/* Dual Range Slider */}
+              {/* Range Slider */}
               <View style={styles.rangeSliderContainer}>
-                {/* Background Track */}
-                <View style={styles.sliderTrack} pointerEvents="none">
-                  <View
-                    style={[
-                      styles.sliderTrackFilled,
-                      {
-                        left: `${(priceRange[0] / 500) * 100}%`,
-                        right: `${100 - (priceRange[1] / 500) * 100}%`
-                      }
-                    ]}
-                  />
-                </View>
-                {/* Max Slider - rendered first so min slider is on top */}
-                <Slider
-                  style={[styles.rangeSlider, { zIndex: 1 }]}
-                  minimumValue={priceRange[0] + 10}
+                <RangeSlider
+                  range={priceRange}
+                  minimumValue={0}
                   maximumValue={500}
                   step={10}
-                  value={priceRange[1]}
-                  onValueChange={(value) => setPriceRange([priceRange[0], value])}
-                  minimumTrackTintColor="transparent"
-                  maximumTrackTintColor="transparent"
+                  onValueChange={(value) => setPriceRange(value)}
+                  outboundColor="#333"
+                  inboundColor="#5B67F1"
                   thumbTintColor="#5B67F1"
-                />
-                {/* Min Slider - rendered last to be on top */}
-                <Slider
-                  style={[styles.rangeSlider, { zIndex: 2 }]}
-                  minimumValue={0}
-                  maximumValue={priceRange[1] - 10}
-                  step={10}
-                  value={priceRange[0]}
-                  onValueChange={(value) => setPriceRange([value, priceRange[1]])}
-                  minimumTrackTintColor="transparent"
-                  maximumTrackTintColor="transparent"
-                  thumbTintColor="#5B67F1"
+                  thumbStyle={styles.thumb}
+                  trackStyle={styles.track}
                 />
               </View>
 
-              {/* Price Labels Below */}
+              {/* Price Labels */}
               <View style={styles.priceLabels}>
                 <View style={styles.priceValueContainer}>
                   <Text style={styles.priceLabel}>Minimum</Text>
@@ -321,33 +297,38 @@ const styles = StyleSheet.create({
     color: '#5B67F1',
   },
   rangeSliderContainer: {
-    height: 40,
-    position: 'relative',
-    paddingHorizontal: 0,
+    paddingHorizontal: 12,
+    paddingVertical: 30,
   },
-  sliderTrack: {
-    position: 'absolute',
-    top: '50%',
-    left: 8,
-    right: 8,
+  track: {
     height: 4,
-    backgroundColor: '#333',
     borderRadius: 2,
-    marginTop: -2,
   },
-  sliderTrackFilled: {
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
+  thumb: {
+    width: 20,
+    height: 20,
+    borderRadius: 10,
     backgroundColor: '#5B67F1',
-    borderRadius: 2,
+    borderWidth: 0,
   },
-  rangeSlider: {
-    position: 'absolute',
-    width: '100%',
-    height: 40,
-    left: 0,
-    right: 0,
+  priceLabels: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 8,
+  },
+  priceValueContainer: {
+    alignItems: 'center',
+    gap: 2,
+  },
+  priceLabel: {
+    fontSize: 11,
+    color: '#888',
+    fontWeight: '500',
+  },
+  priceValue: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#5B67F1',
   },
   optionsGrid: {
     flexDirection: 'row',
