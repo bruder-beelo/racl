@@ -10,10 +10,16 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../navigation/types';
 import { DateTimePickerModal } from '../components/DateTimePickerModal';
 import { LocationPickerModal } from '../components/LocationPickerModal';
 
+type BookScreenNavigationProp = NativeStackNavigationProp<RootStackParamList>;
+
 export const BookScreen: React.FC = () => {
+  const navigation = useNavigation<BookScreenNavigationProp>();
   const [sameLocation, setSameLocation] = useState(true);
   const [pickupLocation, setPickupLocation] = useState('');
   const [dropoffLocation, setDropoffLocation] = useState('');
@@ -218,6 +224,17 @@ export const BookScreen: React.FC = () => {
               (!pickupLocation || !pickupDate || !dropoffDate || !driverAge) && styles.searchButtonDisabled
             ]}
             disabled={!pickupLocation || !pickupDate || !dropoffDate || !driverAge}
+            onPress={() => {
+              if (pickupLocation && pickupDate && dropoffDate) {
+                navigation.navigate('Vehicles', {
+                  location: pickupLocation,
+                  pickupDate,
+                  dropoffDate,
+                  pickupTime,
+                  dropoffTime,
+                });
+              }
+            }}
           >
             <Text style={styles.searchButtonText}>SELECT YOUR VEHICLE</Text>
             <Ionicons name="arrow-forward" size={20} color="#fff" />

@@ -3,6 +3,13 @@ import { CarWithListings } from '../types';
 export type RootStackParamList = {
   Landing: undefined;
   MainTabs: undefined;
+  Vehicles: {
+    location: string;
+    pickupDate: string;
+    dropoffDate: string;
+    pickupTime: string;
+    dropoffTime: string;
+  };
   CarDetails: {
     car: CarWithListings;
   };
