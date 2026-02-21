@@ -34,7 +34,7 @@ export const VehiclesScreen: React.FC = () => {
   const carsWithListings = getCarsWithListings();
 
   // Calculate number of days
-  const daysDiff = Math.ceil((dropoffDate.getTime() - pickupDate.getTime()) / (1000 * 60 * 60 * 24));
+  const daysDiff = Math.max(1, Math.ceil((dropoffDate.getTime() - pickupDate.getTime()) / (1000 * 60 * 60 * 24)));
   const days = daysDiff === 1 ? '1 day' : `${daysDiff} days`;
 
   const renderVehicleCard = ({ item }: { item: typeof carsWithListings[0] }) => {
