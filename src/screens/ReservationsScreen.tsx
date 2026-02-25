@@ -2,8 +2,15 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
+import { useAuth } from '../contexts/AuthContext';
 
 export const ReservationsScreen: React.FC = () => {
+  const { isAuthenticated, login } = useAuth();
+
+  const handleLogin = async () => {
+    await login('user@example.com', 'password');
+  };
+
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
       <View style={styles.content}>
@@ -11,24 +18,30 @@ export const ReservationsScreen: React.FC = () => {
           <Text style={styles.title}>My Reservations</Text>
         </View>
 
-        <View style={styles.emptyState}>
-          <Ionicons name="calendar-outline" size={80} color="#333" />
-          <Text style={styles.emptyTitle}>No Reservations Yet</Text>
-          <Text style={styles.emptySubtitle}>
-            Sign in to view and manage your bookings
-          </Text>
+        {!isAuthenticated ? (
+          <View style={styles.emptyState}>
+            <Ionicons name="calendar-outline" size={80} color="#333" />
+            <Text style={styles.emptyTitle}>No Reservations Yet</Text>
+            <Text style={styles.emptySubtitle}>
+              Sign in to view and manage your bookings
+            </Text>
 
-          <TouchableOpacity style={styles.loginButton}>
-            <Text style={styles.loginButtonText}>Login</Text>
-          </TouchableOpacity>
-
-          <View style={styles.signupPrompt}>
-            <Text style={styles.signupText}>Not a member? </Text>
-            <TouchableOpacity>
-              <Text style={styles.signupLink}>Sign up</Text>
+            <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
+              <Text style={styles.loginButtonText}>Login</Text>
             </TouchableOpacity>
+
+            <View style={styles.signupPrompt}>
+              <Text style={styles.signupText}>Not a member? </Text>
+              <TouchableOpacity onPress={handleLogin}>
+                <Text style={styles.signupLink}>Sign up</Text>
+              </TouchableOpacity>
+            </View>
           </View>
-        </View>
+        ) : (
+          <View style={styles.authenticatedContent}>
+            <Text style={styles.placeholderText}>Reservations content will go here</Text>
+          </View>
+        )}
       </View>
     </SafeAreaView>
   );
@@ -108,5 +121,15 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: '600',
     color: '#5B67F1',
+  },
+  authenticatedContent: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingVertical: 100,
+  },
+  placeholderText: {
+    fontSize: 16,
+    color: '#888',
   },
 });

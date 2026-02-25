@@ -5,7 +5,11 @@ import { Ionicons } from '@expo/vector-icons';
 import { useAuth } from '../contexts/AuthContext';
 
 export const AccountScreen: React.FC = () => {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, login, logout } = useAuth();
+
+  const handleLogin = async () => {
+    await login('user@example.com', 'password');
+  };
 
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
@@ -22,18 +26,42 @@ export const AccountScreen: React.FC = () => {
               Access your reservations, saved preferences, and more
             </Text>
 
-            <TouchableOpacity style={styles.loginButton}>
+            <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
               <Text style={styles.loginButtonText}>Login</Text>
             </TouchableOpacity>
 
             <View style={styles.signupPrompt}>
               <Text style={styles.signupText}>Not a member? </Text>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={handleLogin}>
                 <Text style={styles.signupLink}>Sign up</Text>
               </TouchableOpacity>
             </View>
           </View>
-        ) : null}
+        ) : (
+          <View style={styles.profileSection}>
+            <View style={styles.profileHeader}>
+              <View style={styles.avatarContainer}>
+                <Ionicons name="person" size={40} color="#5B67F1" />
+              </View>
+              <View style={styles.profileInfo}>
+                <Text style={styles.profileName}>Mohammad Smith</Text>
+                <Text style={styles.memberId}>Member ID: MS-2026-4721</Text>
+              </View>
+            </View>
+
+            <View style={styles.statsContainer}>
+              <View style={styles.statItem}>
+                <Text style={styles.statValue}>12</Text>
+                <Text style={styles.statLabel}>Trips</Text>
+              </View>
+              <View style={styles.statDivider} />
+              <View style={styles.statItem}>
+                <Text style={styles.statValue}>3</Text>
+                <Text style={styles.statLabel}>Years</Text>
+              </View>
+            </View>
+          </View>
+        )}
 
         <View style={styles.menuSection}>
           <Text style={styles.sectionTitle}>Settings</Text>
@@ -81,6 +109,15 @@ export const AccountScreen: React.FC = () => {
             <Ionicons name="chevron-forward" size={20} color="#666" />
           </TouchableOpacity>
         </View>
+
+        {isAuthenticated && (
+          <View style={styles.signOutSection}>
+            <TouchableOpacity style={styles.signOutButton} onPress={logout}>
+              <Ionicons name="log-out-outline" size={20} color="#FF6B6B" />
+              <Text style={styles.signOutText}>Sign Out</Text>
+            </TouchableOpacity>
+          </View>
+        )}
 
         <View style={styles.footer}>
           <Text style={styles.version}>Version 1.0.0</Text>
@@ -203,5 +240,89 @@ const styles = StyleSheet.create({
   version: {
     fontSize: 13,
     color: '#666',
+  },
+  profileSection: {
+    paddingHorizontal: 24,
+    paddingVertical: 24,
+    borderBottomWidth: 1,
+    borderBottomColor: '#1a1a1a',
+  },
+  profileHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 16,
+    marginBottom: 24,
+  },
+  avatarContainer: {
+    width: 80,
+    height: 80,
+    borderRadius: 40,
+    backgroundColor: 'rgba(91, 103, 241, 0.1)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 2,
+    borderColor: 'rgba(91, 103, 241, 0.3)',
+  },
+  profileInfo: {
+    flex: 1,
+  },
+  profileName: {
+    fontSize: 24,
+    fontWeight: '700',
+    color: '#fff',
+    marginBottom: 6,
+  },
+  memberId: {
+    fontSize: 14,
+    color: '#888',
+    letterSpacing: 0.5,
+  },
+  statsContainer: {
+    flexDirection: 'row',
+    backgroundColor: '#111',
+    borderRadius: 12,
+    padding: 20,
+    justifyContent: 'space-around',
+  },
+  statItem: {
+    alignItems: 'center',
+    flex: 1,
+  },
+  statValue: {
+    fontSize: 24,
+    fontWeight: '700',
+    color: '#5B67F1',
+    marginBottom: 4,
+  },
+  statLabel: {
+    fontSize: 13,
+    color: '#888',
+    textTransform: 'uppercase',
+    letterSpacing: 0.5,
+  },
+  statDivider: {
+    width: 1,
+    backgroundColor: '#222',
+    marginHorizontal: 12,
+  },
+  signOutSection: {
+    paddingHorizontal: 24,
+    paddingTop: 24,
+  },
+  signOutButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 12,
+    backgroundColor: 'rgba(255, 107, 107, 0.1)',
+    paddingVertical: 16,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: 'rgba(255, 107, 107, 0.2)',
+  },
+  signOutText: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#FF6B6B',
   },
 });
