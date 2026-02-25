@@ -15,6 +15,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../navigation/types';
+import { useAuth } from '../contexts/AuthContext';
 
 const { width, height } = Dimensions.get('window');
 
@@ -50,6 +51,7 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({ navigation }) => {
   const scrollViewRef = useRef<ScrollView>(null);
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const slideAnim = useRef(new Animated.Value(50)).current;
+  const { login } = useAuth();
 
   React.useEffect(() => {
     Animated.parallel([
@@ -66,6 +68,12 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({ navigation }) => {
       }),
     ]).start();
   }, []);
+
+  const handleSignIn = async () => {
+    // Mock sign in - just set authenticated state and navigate to MainTabs
+    await login('guest@example.com', 'password');
+    navigation.navigate('MainTabs');
+  };
 
   const handleGuestEntry = () => {
     navigation.navigate('MainTabs');
@@ -148,6 +156,7 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({ navigation }) => {
               <TouchableOpacity
                 style={styles.primaryButton}
                 activeOpacity={0.8}
+                onPress={handleSignIn}
               >
                 <Text style={styles.primaryButtonText}>Sign In</Text>
               </TouchableOpacity>
@@ -155,6 +164,7 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({ navigation }) => {
               <TouchableOpacity
                 style={styles.secondaryButton}
                 activeOpacity={0.8}
+                onPress={handleSignIn}
               >
                 <Text style={styles.secondaryButtonText}>Sign Up</Text>
               </TouchableOpacity>
