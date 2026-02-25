@@ -5,10 +5,12 @@ import {
   StyleSheet,
   FlatList,
   StatusBar,
+  TouchableOpacity,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { Ionicons } from '@expo/vector-icons';
 import { CarCard } from '../components/CarCard';
 import { SearchBar } from '../components/SearchBar';
 import { CategoryFilter } from '../components/CategoryFilter';
@@ -45,15 +47,29 @@ export const BrowseScreen: React.FC = () => {
         onSelectCategory={setSelectedCategory}
       />
 
-      <FlatList
-        data={filteredCars}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <CarCard car={item} onPress={() => handleCarPress(item)} />
-        )}
-        contentContainerStyle={styles.listContent}
-        showsVerticalScrollIndicator={false}
-      />
+      {filteredCars.length === 0 ? (
+        <View style={styles.emptyState}>
+          <Ionicons name="car-sport-outline" size={64} color="#333" />
+          <Text style={styles.emptyTitle}>No vehicles in this category</Text>
+          <Text style={styles.emptySubtitle}>Try browsing other categories</Text>
+          <TouchableOpacity
+            style={styles.emptyButton}
+            onPress={() => setSelectedCategory('All')}
+          >
+            <Text style={styles.emptyButtonText}>View All</Text>
+          </TouchableOpacity>
+        </View>
+      ) : (
+        <FlatList
+          data={filteredCars}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => (
+            <CarCard car={item} onPress={() => handleCarPress(item)} />
+          )}
+          contentContainerStyle={styles.listContent}
+          showsVerticalScrollIndicator={false}
+        />
+      )}
     </SafeAreaView>
   );
 };
@@ -80,5 +96,37 @@ const styles = StyleSheet.create({
   },
   listContent: {
     paddingBottom: 80,
+  },
+  emptyState: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 40,
+    paddingBottom: 100,
+  },
+  emptyTitle: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: '#fff',
+    marginTop: 20,
+    marginBottom: 8,
+    textAlign: 'center',
+  },
+  emptySubtitle: {
+    fontSize: 15,
+    color: '#888',
+    textAlign: 'center',
+    marginBottom: 24,
+  },
+  emptyButton: {
+    backgroundColor: '#5B67F1',
+    paddingHorizontal: 32,
+    paddingVertical: 14,
+    borderRadius: 12,
+  },
+  emptyButtonText: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#fff',
   },
 });

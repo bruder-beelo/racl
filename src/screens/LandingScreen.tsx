@@ -260,9 +260,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#2a2a2a',
   },
   paginationDotActive: {
-    backgroundColor: '#00D9A5',
+    backgroundColor: '#5B67F1',
     width: 28,
-    shadowColor: '#00D9A5',
+    shadowColor: '#5B67F1',
     shadowOffset: {
       width: 0,
       height: 0,
@@ -276,11 +276,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 28,
   },
   primaryButton: {
-    backgroundColor: '#00D9A5',
+    backgroundColor: '#5B67F1',
     paddingVertical: 18,
     borderRadius: 14,
     alignItems: 'center',
-    shadowColor: '#00D9A5',
+    shadowColor: '#5B67F1',
     shadowOffset: {
       width: 0,
       height: 4,
@@ -292,7 +292,7 @@ const styles = StyleSheet.create({
   primaryButtonText: {
     fontSize: 17,
     fontWeight: '700',
-    color: '#000',
+    color: '#fff',
     letterSpacing: 0.5,
   },
   secondaryButton: {

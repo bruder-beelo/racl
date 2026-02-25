@@ -74,8 +74,8 @@ export const BookScreen: React.FC = () => {
         showsVerticalScrollIndicator={false}
       >
         <View style={styles.header}>
-          <Text style={styles.title}>LET'S GET STARTED</Text>
-          <Text style={styles.subtitle}>Get started by filling in the details below</Text>
+          <Text style={styles.title}>Book Your Rental</Text>
+          <Text style={styles.subtitle}>Tell us when and where you need a car</Text>
         </View>
 
         <View style={styles.form}>
@@ -236,7 +236,7 @@ export const BookScreen: React.FC = () => {
               }
             }}
           >
-            <Text style={styles.searchButtonText}>SELECT YOUR VEHICLE</Text>
+            <Text style={styles.searchButtonText}>Find Your Car</Text>
             <Ionicons name="arrow-forward" size={20} color="#fff" />
           </TouchableOpacity>
         </View>
@@ -257,12 +257,12 @@ const styles = StyleSheet.create({
     paddingBottom: 100,
   },
   header: {
-    paddingHorizontal: 24,
+    paddingHorizontal: 20,
     paddingTop: 20,
-    paddingBottom: 30,
+    paddingBottom: 24,
   },
   title: {
-    fontSize: 32,
+    fontSize: 28,
     fontWeight: '700',
     color: '#fff',
     marginBottom: 8,
@@ -273,7 +273,7 @@ const styles = StyleSheet.create({
     lineHeight: 24,
   },
   form: {
-    paddingHorizontal: 24,
+    paddingHorizontal: 20,
   },
   inputGroup: {
     marginBottom: 24,

@@ -21,9 +21,9 @@ export const ReservationsScreen: React.FC = () => {
         {!isAuthenticated ? (
           <View style={styles.emptyState}>
             <Ionicons name="calendar-outline" size={80} color="#333" />
-            <Text style={styles.emptyTitle}>No Reservations Yet</Text>
+            <Text style={styles.emptyTitle}>No Trips Yet</Text>
             <Text style={styles.emptySubtitle}>
-              Sign in to view and manage your bookings
+              Sign in to book your first car
             </Text>
 
             <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
@@ -39,7 +39,9 @@ export const ReservationsScreen: React.FC = () => {
           </View>
         ) : (
           <View style={styles.authenticatedContent}>
-            <Text style={styles.placeholderText}>Reservations content will go here</Text>
+            <Ionicons name="calendar-outline" size={64} color="#333" />
+            <Text style={styles.placeholderTitle}>No upcoming trips</Text>
+            <Text style={styles.placeholderSubtitle}>Book a car to see your reservations here</Text>
           </View>
         )}
       </View>
@@ -56,7 +58,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    paddingHorizontal: 24,
+    paddingHorizontal: 20,
     paddingTop: 20,
     paddingBottom: 24,
     borderBottomWidth: 1,
@@ -126,10 +128,20 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingVertical: 100,
+    paddingHorizontal: 40,
+    paddingBottom: 100,
   },
-  placeholderText: {
-    fontSize: 16,
+  placeholderTitle: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: '#fff',
+    marginTop: 20,
+    marginBottom: 8,
+    textAlign: 'center',
+  },
+  placeholderSubtitle: {
+    fontSize: 15,
     color: '#888',
+    textAlign: 'center',
   },
 });

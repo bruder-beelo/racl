@@ -24,9 +24,6 @@ export const CarCard: React.FC<CarCardProps> = ({ car, onPress }) => {
     <TouchableOpacity style={styles.card} onPress={onPress} activeOpacity={0.9}>
       <View style={styles.imageContainer}>
         <Image source={{ uri: car.image }} style={styles.image} />
-        <View style={styles.imageBadge}>
-          <Text style={styles.imageBadgeText}>1 of 11</Text>
-        </View>
       </View>
 
       <View style={styles.content}>
@@ -74,20 +71,6 @@ const styles = StyleSheet.create({
     height: '100%',
     backgroundColor: '#000',
   },
-  imageBadge: {
-    position: 'absolute',
-    bottom: 16,
-    left: 16,
-    backgroundColor: 'rgba(0, 0, 0, 0.6)',
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    borderRadius: 16,
-  },
-  imageBadgeText: {
-    color: '#fff',
-    fontSize: 13,
-    fontWeight: '500',
-  },
   content: {
     padding: 16,
     paddingTop: 12,
@@ -128,8 +111,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   badgeText: {
-    fontSize: 12,
-    color: '#fff',
+    fontSize: 11,
+    color: '#888',
     fontWeight: '500',
   },
   priceRow: {
