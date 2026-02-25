@@ -310,8 +310,10 @@ const styles = StyleSheet.create({
     letterSpacing: 0.3,
   },
   guestButton: {
-    paddingVertical: 14,
+    paddingVertical: 16,
     alignItems: 'center',
+    minHeight: 44,
+    justifyContent: 'center',
   },
   guestButtonText: {
     fontSize: 16,
