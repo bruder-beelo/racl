@@ -11,10 +11,6 @@ export const AccountScreen: React.FC = () => {
     await login('user@example.com', 'password');
   };
 
-  const handleLogout = () => {
-    logout();
-  };
-
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -116,7 +112,7 @@ export const AccountScreen: React.FC = () => {
 
         {isAuthenticated && (
           <View style={styles.signOutSection}>
-            <TouchableOpacity style={styles.signOutButton} onPress={handleLogout}>
+            <TouchableOpacity style={styles.signOutButton} onPress={logout}>
               <Ionicons name="log-out-outline" size={20} color="#FF6B6B" />
               <Text style={styles.signOutText}>Sign Out</Text>
             </TouchableOpacity>
