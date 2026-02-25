@@ -36,7 +36,6 @@ export const CarCard: React.FC<CarCardProps> = ({ car, onPress }) => {
         <View style={styles.ratingRow}>
           <Text style={styles.rating}>
             <Text style={styles.ratingNumber}>{closestListing?.vendor.rating || '5.0'}</Text>
-            <Text style={styles.star}>★</Text>
           </Text>
           <Text style={styles.trips}>
             ({closestListing?.vendor.tripCount || 0} trips)
@@ -116,12 +115,7 @@ const styles = StyleSheet.create({
   ratingNumber: {
     fontSize: 15,
     fontWeight: '600',
-    color: '#fff',
-    marginRight: 2,
-  },
-  star: {
     color: '#5B67F1',
-    fontSize: 15,
     marginRight: 6,
   },
   trips: {

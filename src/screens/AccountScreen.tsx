@@ -218,10 +218,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     backgroundColor: '#111',
-    paddingVertical: 16,
+    paddingVertical: 20,
     paddingHorizontal: 16,
     borderRadius: 12,
     marginBottom: 8,
+    minHeight: 56,
   },
   menuItemLeft: {
     flexDirection: 'row',

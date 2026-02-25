@@ -38,8 +38,8 @@ export const CarDetailsScreen: React.FC<CarDetailsScreenProps> = ({ navigation, 
       <ScrollView showsVerticalScrollIndicator={false}>
         <Image source={{ uri: car.image }} style={styles.image} />
 
-        <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
-          <Text style={styles.backButtonText}>← Back</Text>
+        <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()} activeOpacity={0.7}>
+          <Text style={styles.backButtonText}>Back</Text>
         </TouchableOpacity>
 
         <View style={styles.content}>
@@ -79,7 +79,7 @@ export const CarDetailsScreen: React.FC<CarDetailsScreenProps> = ({ navigation, 
             <View style={styles.featuresContainer}>
               {car.features.map((feature, index) => (
                 <View key={index} style={styles.featureItem}>
-                  <Text style={styles.featureBullet}>✓</Text>
+                  <Text style={styles.featureBullet}>•</Text>
                   <Text style={styles.featureText}>{feature}</Text>
                 </View>
               ))}
@@ -122,10 +122,12 @@ const styles = StyleSheet.create({
     left: 16,
     backgroundColor: 'rgba(26, 26, 26, 0.9)',
     paddingHorizontal: 16,
-    paddingVertical: 8,
+    paddingVertical: 12,
     borderRadius: 20,
     borderWidth: 1,
     borderColor: '#333',
+    minHeight: 44,
+    justifyContent: 'center',
   },
   backButtonText: {
     fontSize: 16,

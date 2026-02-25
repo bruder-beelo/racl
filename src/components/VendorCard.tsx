@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { Vendor, CarListing } from '../types';
 
 interface VendorCardProps {
@@ -9,6 +9,14 @@ interface VendorCardProps {
 }
 
 export const VendorCard: React.FC<VendorCardProps> = ({ vendor, listing, onBook }) => {
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleBook = async () => {
+    setIsLoading(true);
+    await onBook();
+    setIsLoading(false);
+  };
+
   return (
     <View style={styles.card}>
       <View style={styles.header}>
@@ -20,7 +28,6 @@ export const VendorCard: React.FC<VendorCardProps> = ({ vendor, listing, onBook 
             <Text style={styles.vendorName}>{vendor.name}</Text>
             <View style={styles.statsRow}>
               <View style={styles.ratingContainer}>
-                <Text style={styles.star}>★</Text>
                 <Text style={styles.rating}>{vendor.rating}</Text>
                 <Text style={styles.reviewCount}>({vendor.reviewCount} reviews)</Text>
               </View>
@@ -52,8 +59,17 @@ export const VendorCard: React.FC<VendorCardProps> = ({ vendor, listing, onBook 
           <Text style={styles.price}>${listing.pricePerDay}</Text>
           <Text style={styles.priceLabel}>/day</Text>
         </View>
-        <TouchableOpacity style={styles.bookButton} onPress={onBook}>
-          <Text style={styles.bookButtonText}>Book now</Text>
+        <TouchableOpacity
+          style={[styles.bookButton, isLoading && styles.bookButtonDisabled]}
+          onPress={handleBook}
+          disabled={isLoading}
+          activeOpacity={0.8}
+        >
+          {isLoading ? (
+            <ActivityIndicator color="#fff" size="small" />
+          ) : (
+            <Text style={styles.bookButtonText}>Book now</Text>
+          )}
         </TouchableOpacity>
       </View>
     </View>
@@ -108,15 +124,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  star: {
-    color: '#5B67F1',
-    fontSize: 14,
-    marginRight: 2,
-  },
   rating: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#fff',
+    color: '#5B67F1',
     marginRight: 4,
   },
   reviewCount: {
@@ -171,8 +182,16 @@ const styles = StyleSheet.create({
   bookButton: {
     backgroundColor: '#5B67F1',
     paddingHorizontal: 32,
-    paddingVertical: 12,
+    paddingVertical: 14,
     borderRadius: 8,
+    minHeight: 48,
+    minWidth: 120,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  bookButtonDisabled: {
+    backgroundColor: '#4a5dc9',
+    opacity: 0.7,
   },
   bookButtonText: {
     color: '#fff',
