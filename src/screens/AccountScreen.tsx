@@ -110,8 +110,8 @@ const styles = StyleSheet.create({
   authPrompt: {
     alignItems: 'center',
     paddingHorizontal: 40,
-    paddingVertical: 40,
     paddingTop: 20,
+    paddingBottom: 40,
     borderBottomWidth: 1,
     borderBottomColor: '#1a1a1a',
   },
