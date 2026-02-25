@@ -110,7 +110,10 @@ export const VehiclesScreen: React.FC = () => {
           </View>
 
           <View style={styles.footer}>
-            <Text style={styles.totalPrice}>Total: ${totalPrice}</Text>
+            <View>
+              <Text style={styles.totalPrice}>${totalPrice}</Text>
+              <Text style={styles.totalLabel}>total</Text>
+            </View>
             <Text style={styles.vendors}>{item.listings.length} vendors</Text>
           </View>
         </View>
@@ -126,7 +129,7 @@ export const VehiclesScreen: React.FC = () => {
           <Ionicons name="arrow-back" size={24} color="#fff" />
         </TouchableOpacity>
         <View style={styles.headerCenter}>
-          <Text style={styles.headerTitle}>Available Vehicles</Text>
+          <Text style={styles.headerTitle}>Choose Your Car</Text>
         </View>
         <TouchableOpacity style={styles.filterButton} onPress={() => setShowFilters(true)}>
           <Ionicons name="options-outline" size={24} color="#fff" />
@@ -148,13 +151,27 @@ export const VehiclesScreen: React.FC = () => {
       </View>
 
       {/* Vehicle List */}
-      <FlatList
-        data={filteredCars}
-        renderItem={renderVehicleCard}
-        keyExtractor={(item) => item.id}
-        contentContainerStyle={styles.listContent}
-        showsVerticalScrollIndicator={false}
-      />
+      {filteredCars.length === 0 ? (
+        <View style={styles.emptyState}>
+          <Ionicons name="car-outline" size={64} color="#333" />
+          <Text style={styles.emptyTitle}>No vehicles match your filters</Text>
+          <Text style={styles.emptySubtitle}>Try adjusting your search criteria</Text>
+          <TouchableOpacity
+            style={styles.emptyButton}
+            onPress={() => setShowFilters(true)}
+          >
+            <Text style={styles.emptyButtonText}>Adjust Filters</Text>
+          </TouchableOpacity>
+        </View>
+      ) : (
+        <FlatList
+          data={filteredCars}
+          renderItem={renderVehicleCard}
+          keyExtractor={(item) => item.id}
+          contentContainerStyle={styles.listContent}
+          showsVerticalScrollIndicator={false}
+        />
+      )}
 
       {/* Filters Modal */}
       <FiltersModal
@@ -304,12 +321,49 @@ const styles = StyleSheet.create({
     borderTopColor: '#2a2a2a',
   },
   totalPrice: {
-    fontSize: 16,
-    fontWeight: '600',
+    fontSize: 20,
+    fontWeight: '700',
     color: '#fff',
+  },
+  totalLabel: {
+    fontSize: 12,
+    color: '#888',
+    marginTop: 2,
   },
   vendors: {
     fontSize: 13,
     color: '#888',
+  },
+  emptyState: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 40,
+    paddingBottom: 100,
+  },
+  emptyTitle: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: '#fff',
+    marginTop: 20,
+    marginBottom: 8,
+    textAlign: 'center',
+  },
+  emptySubtitle: {
+    fontSize: 15,
+    color: '#888',
+    textAlign: 'center',
+    marginBottom: 24,
+  },
+  emptyButton: {
+    backgroundColor: '#5B67F1',
+    paddingHorizontal: 32,
+    paddingVertical: 14,
+    borderRadius: 12,
+  },
+  emptyButtonText: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#fff',
   },
 });

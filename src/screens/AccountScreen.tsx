@@ -21,9 +21,9 @@ export const AccountScreen: React.FC = () => {
         {!isAuthenticated ? (
           <View style={styles.authPrompt}>
             <Ionicons name="person-circle-outline" size={80} color="#333" />
-            <Text style={styles.authTitle}>Sign in for the best experience</Text>
+            <Text style={styles.authTitle}>Sign in to manage your trips</Text>
             <Text style={styles.authSubtitle}>
-              Access your reservations, saved preferences, and more
+              View reservations, update preferences, and track your bookings
             </Text>
 
             <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#000',
   },
   header: {
-    paddingHorizontal: 24,
+    paddingHorizontal: 20,
     paddingTop: 20,
     paddingBottom: 24,
     borderBottomWidth: 1,
@@ -202,7 +202,7 @@ const styles = StyleSheet.create({
     color: '#5B67F1',
   },
   menuSection: {
-    paddingHorizontal: 24,
+    paddingHorizontal: 20,
     paddingTop: 24,
   },
   sectionTitle: {
@@ -243,7 +243,7 @@ const styles = StyleSheet.create({
     color: '#666',
   },
   profileSection: {
-    paddingHorizontal: 24,
+    paddingHorizontal: 20,
     paddingVertical: 24,
     borderBottomWidth: 1,
     borderBottomColor: '#1a1a1a',
@@ -307,7 +307,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 12,
   },
   signOutSection: {
-    paddingHorizontal: 24,
+    paddingHorizontal: 20,
     paddingTop: 24,
   },
   signOutButton: {
