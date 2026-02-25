@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useCallback, useMemo, ReactNode } from 'react';
 
 interface User {
   id: string;
@@ -19,7 +19,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
 
-  const login = async (email: string, password: string) => {
+  const login = useCallback(async (email: string, password: string) => {
     // Mock authentication - simulate API call
     await new Promise(resolve => setTimeout(resolve, 1000));
     setUser({
@@ -27,9 +27,9 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       email,
       name: email.split('@')[0],
     });
-  };
+  }, []);
 
-  const signup = async (email: string, password: string, name: string) => {
+  const signup = useCallback(async (email: string, password: string, name: string) => {
     // Mock authentication - simulate API call
     await new Promise(resolve => setTimeout(resolve, 1000));
     setUser({
@@ -37,22 +37,25 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       email,
       name,
     });
-  };
+  }, []);
 
-  const logout = () => {
+  const logout = useCallback(() => {
     setUser(null);
-  };
+  }, []);
+
+  const value = useMemo(
+    () => ({
+      user,
+      isAuthenticated: !!user,
+      login,
+      signup,
+      logout,
+    }),
+    [user, login, signup, logout]
+  );
 
   return (
-    <AuthContext.Provider
-      value={{
-        user,
-        isAuthenticated: !!user,
-        login,
-        signup,
-        logout,
-      }}
-    >
+    <AuthContext.Provider value={value}>
       {children}
     </AuthContext.Provider>
   );
