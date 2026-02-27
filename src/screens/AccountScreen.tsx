@@ -114,7 +114,7 @@ export const AccountScreen: React.FC = () => {
         {isAuthenticated && (
           <View style={styles.signOutSection}>
             <TouchableOpacity style={styles.signOutButton} onPress={logout}>
-              <Ionicons name="log-out-outline" size={20} color="#FF6B6B" />
+              <Ionicons name="log-out-outline" size={20} color={theme.colors.accent} />
               <Text style={styles.signOutText}>Sign Out</Text>
             </TouchableOpacity>
           </View>
@@ -218,7 +218,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    backgroundColor: '#111',
+    backgroundColor: theme.colors.surface1,
     paddingVertical: 20,
     paddingHorizontal: 16,
     borderRadius: 12,
@@ -259,11 +259,11 @@ const styles = StyleSheet.create({
     width: 80,
     height: 80,
     borderRadius: 40,
-    backgroundColor: 'rgba(91, 103, 241, 0.1)',
+    backgroundColor: theme.colors.secondaryBg,
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 2,
-    borderColor: 'rgba(91, 103, 241, 0.3)',
+    borderColor: theme.colors.secondaryBorder,
   },
   profileInfo: {
     flex: 1,
@@ -281,7 +281,7 @@ const styles = StyleSheet.create({
   },
   statsContainer: {
     flexDirection: 'row',
-    backgroundColor: '#111',
+    backgroundColor: theme.colors.surface2,
     borderRadius: 12,
     padding: 20,
     justifyContent: 'space-around',
@@ -316,15 +316,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     gap: 12,
-    backgroundColor: 'rgba(255, 107, 107, 0.1)',
+    backgroundColor: theme.colors.accentBg,
     paddingVertical: 16,
     borderRadius: 12,
     borderWidth: 1,
-    borderColor: 'rgba(255, 107, 107, 0.2)',
+    borderColor: theme.colors.accentBorder,
   },
   signOutText: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#FF6B6B',
+    color: theme.colors.accent,
   },
 });

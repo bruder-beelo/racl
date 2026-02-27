@@ -37,7 +37,7 @@ export const MainTabNavigator = () => {
           elevation: 20,
         },
         tabBarActiveTintColor: theme.colors.textPrimary,
-        tabBarInactiveTintColor: 'rgba(15, 15, 16, 0.4)',
+        tabBarInactiveTintColor: theme.colors.tabBarInactive,
         tabBarLabelStyle: {
           fontSize: 11,
           fontWeight: '700',

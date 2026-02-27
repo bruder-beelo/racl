@@ -312,7 +312,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     height: 56,
     borderTopWidth: 0.5,
-    borderTopColor: '#444',
+    borderTopColor: theme.colors.borderMedium,
   },
   inputIcon: {
     marginRight: 12,
@@ -374,7 +374,7 @@ const styles = StyleSheet.create({
   divider: {
     width: 1,
     height: 20,
-    backgroundColor: '#444',
+    backgroundColor: theme.colors.borderMedium,
     marginHorizontal: 6,
   },
   ageButton: {

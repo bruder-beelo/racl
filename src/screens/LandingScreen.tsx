@@ -28,19 +28,19 @@ interface LandingScreenProps {
 
 const SLIDES = [
   {
-    image: require('../../assets/neon_carousel/carousel-image-1.png'),
+    //image: require('../../assets/neon_carousel/carousel-image-1.png'),
     title: 'Welcome!',
     subtitle: 'Smart car rentals for the modern traveler.',
     description: 'Everything digital, from booking to pickup.',
   },
   {
-    image: require('../../assets/neon_carousel/carousel-image-2.png'),
+    //image: require('../../assets/neon_carousel/carousel-image-2.png'),
     title: 'One search. Multiple agencies. Best price.',
     subtitle: 'Compare offers instantly and book with confidence.',
     description: '',
   },
   {
-    image: require('../../assets/neon_carousel/carousel-image-3.png'),
+    //image: require('../../assets/neon_carousel/carousel-image-3.png'),
     title: 'Rent with peace of mind.',
     subtitle: 'Trusted providers, clear pricing, zero surprises.',
     description: '',
@@ -297,12 +297,12 @@ const styles = StyleSheet.create({
     letterSpacing: 0.5,
   },
   secondaryButton: {
-    backgroundColor: 'rgba(255, 255, 255, 0.05)',
+    backgroundColor: theme.colors.overlayLight,
     paddingVertical: 18,
     borderRadius: 14,
     alignItems: 'center',
     borderWidth: 1.5,
-    borderColor: 'rgba(255, 255, 255, 0.1)',
+    borderColor: theme.colors.overlayBorder,
   },
   secondaryButtonText: {
     fontSize: 17,
