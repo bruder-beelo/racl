@@ -14,6 +14,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../navigation/types';
 import { getCarsWithListings } from '../data/mockData';
 import { FiltersModal, FilterState } from '../components/FiltersModal';
+import { theme } from '../theme/colors';
 
 type VehiclesScreenRouteProp = RouteProp<RootStackParamList, 'Vehicles'>;
 type VehiclesScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'Vehicles'>;
@@ -96,15 +97,15 @@ export const VehiclesScreen: React.FC = () => {
 
           <View style={styles.specs}>
             <View style={styles.specItem}>
-              <Ionicons name="people-outline" size={16} color="#888" />
+              <Ionicons name="people-outline" size={16} color={theme.colors.textMuted} />
               <Text style={styles.specText}>{item.specs.seats} seats</Text>
             </View>
             <View style={styles.specItem}>
-              <Ionicons name="speedometer-outline" size={16} color="#888" />
+              <Ionicons name="speedometer-outline" size={16} color={theme.colors.textMuted} />
               <Text style={styles.specText}>{item.specs.transmission}</Text>
             </View>
             <View style={styles.specItem}>
-              <Ionicons name="flash-outline" size={16} color="#888" />
+              <Ionicons name="flash-outline" size={16} color={theme.colors.textMuted} />
               <Text style={styles.specText}>{item.specs.fuelType}</Text>
             </View>
           </View>
@@ -126,13 +127,13 @@ export const VehiclesScreen: React.FC = () => {
       {/* Header */}
       <View style={styles.header}>
         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
-          <Ionicons name="arrow-back" size={24} color="#fff" />
+          <Ionicons name="arrow-back" size={24} color={theme.colors.textPrimary} />
         </TouchableOpacity>
         <View style={styles.headerCenter}>
           <Text style={styles.headerTitle}>Choose Your Car</Text>
         </View>
         <TouchableOpacity style={styles.filterButton} onPress={() => setShowFilters(true)}>
-          <Ionicons name="options-outline" size={24} color="#fff" />
+          <Ionicons name="options-outline" size={24} color={theme.colors.textPrimary} />
           <Text style={styles.filterText}>Filters</Text>
         </TouchableOpacity>
       </View>
@@ -140,12 +141,12 @@ export const VehiclesScreen: React.FC = () => {
       {/* Summary */}
       <View style={styles.summary}>
         <View style={styles.summaryItem}>
-          <Ionicons name="location-outline" size={16} color="#888" />
+          <Ionicons name="location-outline" size={16} color={theme.colors.textMuted} />
           <Text style={styles.summaryText}>{location}</Text>
         </View>
         <View style={styles.summaryDivider} />
         <View style={styles.summaryItem}>
-          <Ionicons name="calendar-outline" size={16} color="#888" />
+          <Ionicons name="calendar-outline" size={16} color={theme.colors.textMuted} />
           <Text style={styles.summaryText}>{days}</Text>
         </View>
       </View>
@@ -153,7 +154,7 @@ export const VehiclesScreen: React.FC = () => {
       {/* Vehicle List */}
       {filteredCars.length === 0 ? (
         <View style={styles.emptyState}>
-          <Ionicons name="car-outline" size={64} color="#333" />
+          <Ionicons name="car-outline" size={64} color={theme.colors.border} />
           <Text style={styles.emptyTitle}>No vehicles match your filters</Text>
           <Text style={styles.emptySubtitle}>Try adjusting your search criteria</Text>
           <TouchableOpacity
@@ -187,7 +188,7 @@ export const VehiclesScreen: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#000',
+    backgroundColor: theme.colors.background,
   },
   header: {
     flexDirection: 'row',
@@ -196,7 +197,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 16,
     borderBottomWidth: 1,
-    borderBottomColor: '#222',
+    borderBottomColor: theme.colors.borderLight,
   },
   backButton: {
     width: 40,
@@ -211,7 +212,7 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 18,
     fontWeight: '700',
-    color: '#fff',
+    color: theme.colors.textPrimary,
   },
   filterButton: {
     flexDirection: 'row',
@@ -221,7 +222,7 @@ const styles = StyleSheet.create({
   filterText: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#fff',
+    color: theme.colors.textPrimary,
   },
   summary: {
     flexDirection: 'row',
@@ -229,7 +230,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingVertical: 12,
     paddingHorizontal: 20,
-    backgroundColor: '#0d0d0d',
+    backgroundColor: theme.colors.surface3,
     gap: 12,
   },
   summaryItem: {
@@ -239,30 +240,30 @@ const styles = StyleSheet.create({
   },
   summaryText: {
     fontSize: 14,
-    color: '#fff',
+    color: theme.colors.textPrimary,
     fontWeight: '500',
   },
   summaryDivider: {
     width: 1,
     height: 16,
-    backgroundColor: '#333',
+    backgroundColor: theme.colors.border,
   },
   listContent: {
     padding: 20,
     paddingBottom: 40,
   },
   card: {
-    backgroundColor: '#1a1a1a',
+    backgroundColor: theme.colors.surface1,
     borderRadius: 16,
     marginBottom: 16,
     overflow: 'hidden',
     borderWidth: 1,
-    borderColor: '#333',
+    borderColor: theme.colors.border,
   },
   carImage: {
     width: '100%',
     height: 200,
-    backgroundColor: '#0d0d0d',
+    backgroundColor: theme.colors.surface3,
   },
   cardContent: {
     padding: 16,
@@ -276,12 +277,12 @@ const styles = StyleSheet.create({
   carName: {
     fontSize: 18,
     fontWeight: '700',
-    color: '#fff',
+    color: theme.colors.textPrimary,
     marginBottom: 4,
   },
   carCategory: {
     fontSize: 14,
-    color: '#888',
+    color: theme.colors.textMuted,
   },
   priceContainer: {
     alignItems: 'flex-end',
@@ -289,11 +290,11 @@ const styles = StyleSheet.create({
   price: {
     fontSize: 24,
     fontWeight: '700',
-    color: '#5B67F1',
+    color: theme.colors.accent,
   },
   priceLabel: {
     fontSize: 12,
-    color: '#888',
+    color: theme.colors.textMuted,
   },
   specs: {
     flexDirection: 'row',
@@ -301,7 +302,7 @@ const styles = StyleSheet.create({
     marginBottom: 12,
     paddingTop: 12,
     borderTopWidth: 1,
-    borderTopColor: '#2a2a2a',
+    borderTopColor: theme.colors.surface2,
   },
   specItem: {
     flexDirection: 'row',
@@ -310,7 +311,7 @@ const styles = StyleSheet.create({
   },
   specText: {
     fontSize: 13,
-    color: '#888',
+    color: theme.colors.textMuted,
   },
   footer: {
     flexDirection: 'row',
@@ -318,21 +319,21 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingTop: 12,
     borderTopWidth: 1,
-    borderTopColor: '#2a2a2a',
+    borderTopColor: theme.colors.surface2,
   },
   totalPrice: {
     fontSize: 20,
     fontWeight: '700',
-    color: '#fff',
+    color: theme.colors.textPrimary,
   },
   totalLabel: {
     fontSize: 12,
-    color: '#888',
+    color: theme.colors.textMuted,
     marginTop: 2,
   },
   vendors: {
     fontSize: 13,
-    color: '#888',
+    color: theme.colors.textMuted,
   },
   emptyState: {
     flex: 1,
@@ -344,19 +345,19 @@ const styles = StyleSheet.create({
   emptyTitle: {
     fontSize: 20,
     fontWeight: '700',
-    color: '#fff',
+    color: theme.colors.textPrimary,
     marginTop: 20,
     marginBottom: 8,
     textAlign: 'center',
   },
   emptySubtitle: {
     fontSize: 15,
-    color: '#888',
+    color: theme.colors.textMuted,
     textAlign: 'center',
     marginBottom: 24,
   },
   emptyButton: {
-    backgroundColor: '#5B67F1',
+    backgroundColor: theme.colors.accent,
     paddingHorizontal: 32,
     paddingVertical: 14,
     borderRadius: 12,
@@ -364,6 +365,6 @@ const styles = StyleSheet.create({
   emptyButtonText: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#fff',
+    color: theme.colors.textPrimary,
   },
 });

@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
+import { theme } from '../theme/colors';
 
 interface SearchBarProps {
   onLocationPress?: () => void;
@@ -32,13 +33,13 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#1a1a1a',
+    backgroundColor: theme.colors.surface1,
     borderRadius: 12,
     padding: 12,
     marginHorizontal: 16,
     marginVertical: 16,
     borderWidth: 1,
-    borderColor: '#333',
+    borderColor: theme.colors.border,
   },
   inputContainer: {
     flex: 1,
@@ -46,33 +47,33 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 12,
-    color: '#888',
+    color: theme.colors.textMuted,
     marginBottom: 2,
     fontWeight: '500',
   },
   value: {
     fontSize: 15,
-    color: '#fff',
+    color: theme.colors.textPrimary,
     fontWeight: '500',
   },
   divider: {
     width: 1,
     height: 32,
-    backgroundColor: '#333',
+    backgroundColor: theme.colors.border,
     marginHorizontal: 12,
   },
   searchButton: {
     paddingHorizontal: 20,
     paddingVertical: 10,
     borderRadius: 20,
-    backgroundColor: '#5B67F1',
+    backgroundColor: theme.colors.accent,
     justifyContent: 'center',
     alignItems: 'center',
     marginLeft: 8,
   },
   searchIcon: {
     fontSize: 14,
-    color: '#fff',
+    color: theme.colors.textOnAccent,
     fontWeight: '600',
   },
 });

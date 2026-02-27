@@ -17,6 +17,7 @@ import { CategoryFilter } from '../components/CategoryFilter';
 import { getCarsWithListings } from '../data/mockData';
 import { CarWithListings } from '../types';
 import { RootStackParamList } from '../navigation/types';
+import { theme } from '../theme/colors';
 
 type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
@@ -49,7 +50,7 @@ export const BrowseScreen: React.FC = () => {
 
       {filteredCars.length === 0 ? (
         <View style={styles.emptyState}>
-          <Ionicons name="car-sport-outline" size={64} color="#333" />
+          <Ionicons name="car-sport-outline" size={64} color={theme.colors.border} />
           <Text style={styles.emptyTitle}>No vehicles in this category</Text>
           <Text style={styles.emptySubtitle}>Try browsing other categories</Text>
           <TouchableOpacity
@@ -77,7 +78,7 @@ export const BrowseScreen: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#000',
+    backgroundColor: theme.colors.background,
   },
   header: {
     paddingHorizontal: 16,
@@ -87,12 +88,12 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 28,
     fontWeight: '700',
-    color: '#fff',
+    color: theme.colors.textPrimary,
     marginBottom: 4,
   },
   subtitle: {
     fontSize: 15,
-    color: '#aaa',
+    color: theme.colors.textSecondary,
   },
   listContent: {
     paddingBottom: 80,
@@ -107,19 +108,19 @@ const styles = StyleSheet.create({
   emptyTitle: {
     fontSize: 20,
     fontWeight: '700',
-    color: '#fff',
+    color: theme.colors.textPrimary,
     marginTop: 20,
     marginBottom: 8,
     textAlign: 'center',
   },
   emptySubtitle: {
     fontSize: 15,
-    color: '#888',
+    color: theme.colors.textMuted,
     textAlign: 'center',
     marginBottom: 24,
   },
   emptyButton: {
-    backgroundColor: '#5B67F1',
+    backgroundColor: theme.colors.accent,
     paddingHorizontal: 32,
     paddingVertical: 14,
     borderRadius: 12,
@@ -127,6 +128,6 @@ const styles = StyleSheet.create({
   emptyButtonText: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#fff',
+    color: theme.colors.textPrimary,
   },
 });

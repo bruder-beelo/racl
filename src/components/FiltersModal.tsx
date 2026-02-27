@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { RangeSlider } from '@react-native-assets/slider';
+import { theme } from '../theme/colors';
 
 interface FiltersModalProps {
   visible: boolean;
@@ -93,7 +94,7 @@ export const FiltersModal: React.FC<FiltersModalProps> = ({
         <View style={styles.modalContainer}>
           <View style={styles.header}>
             <TouchableOpacity onPress={onClose} style={styles.closeButton}>
-              <Ionicons name="close" size={24} color="#fff" />
+              <Ionicons name="close" size={24} color={theme.colors.textPrimary} />
             </TouchableOpacity>
             <Text style={styles.headerTitle}>Filters</Text>
             <TouchableOpacity onPress={handleReset} style={styles.resetButton}>
@@ -114,9 +115,9 @@ export const FiltersModal: React.FC<FiltersModalProps> = ({
                   maximumValue={500}
                   step={10}
                   onValueChange={(value) => setPriceRange(value)}
-                  outboundColor="#333"
-                  inboundColor="#5B67F1"
-                  thumbTintColor="#5B67F1"
+                  outboundColor={theme.colors.border}
+                  inboundColor={theme.colors.accent}
+                  thumbTintColor={theme.colors.accent}
                   thumbStyle={styles.thumb}
                   trackStyle={styles.track}
                 />
@@ -229,11 +230,11 @@ export const FiltersModal: React.FC<FiltersModalProps> = ({
 const styles = StyleSheet.create({
   overlay: {
     flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+    backgroundColor: theme.colors.scrim,
     justifyContent: 'flex-end',
   },
   modalContainer: {
-    backgroundColor: '#1a1a1a',
+    backgroundColor: theme.colors.surface1,
     borderTopLeftRadius: 24,
     borderTopRightRadius: 24,
     paddingTop: 20,
@@ -256,7 +257,7 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 18,
     fontWeight: '700',
-    color: '#fff',
+    color: theme.colors.textPrimary,
   },
   resetButton: {
     paddingHorizontal: 12,
@@ -265,7 +266,7 @@ const styles = StyleSheet.create({
   resetText: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#5B67F1',
+    color: theme.colors.accent,
   },
   section: {
     paddingHorizontal: 20,
@@ -274,7 +275,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 16,
     fontWeight: '700',
-    color: '#fff',
+    color: theme.colors.textPrimary,
     marginBottom: 12,
   },
   priceLabels: {
@@ -288,13 +289,13 @@ const styles = StyleSheet.create({
   },
   priceLabel: {
     fontSize: 11,
-    color: '#888',
+    color: theme.colors.textMuted,
     fontWeight: '500',
   },
   priceValue: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#5B67F1',
+    color: theme.colors.accent,
   },
   rangeSliderContainer: {
     paddingHorizontal: 12,
@@ -308,27 +309,8 @@ const styles = StyleSheet.create({
     width: 20,
     height: 20,
     borderRadius: 10,
-    backgroundColor: '#5B67F1',
+    backgroundColor: theme.colors.accent,
     borderWidth: 0,
-  },
-  priceLabels: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: 8,
-  },
-  priceValueContainer: {
-    alignItems: 'center',
-    gap: 2,
-  },
-  priceLabel: {
-    fontSize: 11,
-    color: '#888',
-    fontWeight: '500',
-  },
-  priceValue: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#5B67F1',
   },
   optionsGrid: {
     flexDirection: 'row',
@@ -336,24 +318,24 @@ const styles = StyleSheet.create({
     gap: 10,
   },
   optionChip: {
-    backgroundColor: '#0d0d0d',
+    backgroundColor: theme.colors.surface3,
     borderRadius: 20,
     paddingHorizontal: 18,
     paddingVertical: 10,
     borderWidth: 1,
-    borderColor: '#333',
+    borderColor: theme.colors.border,
   },
   optionChipSelected: {
-    backgroundColor: '#5B67F1',
-    borderColor: '#5B67F1',
+    backgroundColor: theme.colors.accent,
+    borderColor: theme.colors.accent,
   },
   optionText: {
     fontSize: 14,
-    color: '#888',
+    color: theme.colors.textMuted,
     fontWeight: '500',
   },
   optionTextSelected: {
-    color: '#fff',
+    color: theme.colors.textPrimary,
     fontWeight: '600',
   },
   footer: {
@@ -361,11 +343,11 @@ const styles = StyleSheet.create({
     paddingTop: 16,
   },
   applyButton: {
-    backgroundColor: '#5B67F1',
+    backgroundColor: theme.colors.accent,
     borderRadius: 14,
     paddingVertical: 18,
     alignItems: 'center',
-    shadowColor: '#5B67F1',
+    shadowColor: theme.colors.accent,
     shadowOffset: {
       width: 0,
       height: 4,
@@ -377,7 +359,7 @@ const styles = StyleSheet.create({
   applyButtonText: {
     fontSize: 17,
     fontWeight: '700',
-    color: '#fff',
+    color: theme.colors.textPrimary,
     letterSpacing: 0.5,
   },
 });

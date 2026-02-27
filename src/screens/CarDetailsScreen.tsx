@@ -13,6 +13,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RouteProp } from '@react-navigation/native';
 import { VendorCard } from '../components/VendorCard';
 import { RootStackParamList } from '../navigation/types';
+import { theme } from '../theme/colors';
 
 type CarDetailsScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'CarDetails'>;
 type CarDetailsScreenRouteProp = RouteProp<RootStackParamList, 'CarDetails'>;
@@ -109,30 +110,30 @@ export const CarDetailsScreen: React.FC<CarDetailsScreenProps> = ({ navigation, 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#000',
+    backgroundColor: theme.colors.background,
   },
   image: {
     width: '100%',
     height: 300,
-    backgroundColor: '#000',
+    backgroundColor: theme.colors.background,
   },
   backButton: {
     position: 'absolute',
     top: 50,
     left: 16,
-    backgroundColor: 'rgba(26, 26, 26, 0.9)',
+    backgroundColor: theme.colors.overlay,
     paddingHorizontal: 16,
     paddingVertical: 12,
     borderRadius: 20,
     borderWidth: 1,
-    borderColor: '#333',
+    borderColor: theme.colors.border,
     minHeight: 44,
     justifyContent: 'center',
   },
   backButtonText: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#fff',
+    color: theme.colors.textPrimary,
   },
   content: {
     padding: 16,
@@ -146,12 +147,12 @@ const styles = StyleSheet.create({
   carName: {
     fontSize: 24,
     fontWeight: '700',
-    color: '#fff',
+    color: theme.colors.textPrimary,
     marginBottom: 4,
   },
   carType: {
     fontSize: 16,
-    color: '#aaa',
+    color: theme.colors.textSecondary,
   },
   section: {
     marginBottom: 32,
@@ -159,12 +160,12 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 20,
     fontWeight: '700',
-    color: '#fff',
+    color: theme.colors.textPrimary,
     marginBottom: 4,
   },
   sectionSubtitle: {
     fontSize: 14,
-    color: '#888',
+    color: theme.colors.textMuted,
     marginBottom: 16,
   },
   specsGrid: {
@@ -178,13 +179,13 @@ const styles = StyleSheet.create({
   },
   specLabel: {
     fontSize: 13,
-    color: '#888',
+    color: theme.colors.textMuted,
     marginBottom: 4,
   },
   specValue: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#fff',
+    color: theme.colors.textPrimary,
   },
   featuresContainer: {
     marginTop: 12,
@@ -196,12 +197,12 @@ const styles = StyleSheet.create({
   },
   featureBullet: {
     fontSize: 18,
-    color: '#5B67F1',
+    color: theme.colors.accent,
     marginRight: 12,
     fontWeight: '600',
   },
   featureText: {
     fontSize: 15,
-    color: '#fff',
+    color: theme.colors.textPrimary,
   },
 });

@@ -16,6 +16,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../navigation/types';
 import { useAuth } from '../contexts/AuthContext';
+import { theme } from '../theme/colors';
 
 const { width, height } = Dimensions.get('window');
 
@@ -187,7 +188,7 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#000',
+    backgroundColor: theme.colors.background,
   },
   safeArea: {
     flex: 1,
@@ -205,7 +206,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
     paddingTop: 30,
-    backgroundColor: '#000',
+    backgroundColor: theme.colors.background,
   },
   imageWrapper: {
     width: width - 40,
@@ -226,19 +227,19 @@ const styles = StyleSheet.create({
   slideTitle: {
     fontSize: 24,
     fontWeight: '700',
-    color: '#fff',
+    color: theme.colors.textPrimary,
     textAlign: 'center',
     marginBottom: 12,
   },
   slideSubtitle: {
     fontSize: 16,
-    color: '#aaa',
+    color: theme.colors.textSecondary,
     textAlign: 'center',
     lineHeight: 24,
   },
   slideDescription: {
     fontSize: 15,
-    color: '#888',
+    color: theme.colors.textMuted,
     textAlign: 'center',
     marginTop: 8,
     lineHeight: 22,
@@ -257,12 +258,12 @@ const styles = StyleSheet.create({
     width: 8,
     height: 8,
     borderRadius: 4,
-    backgroundColor: '#2a2a2a',
+    backgroundColor: theme.colors.surface2,
   },
   paginationDotActive: {
-    backgroundColor: '#5B67F1',
+    backgroundColor: theme.colors.accent,
     width: 28,
-    shadowColor: '#5B67F1',
+    shadowColor: theme.colors.accent,
     shadowOffset: {
       width: 0,
       height: 0,
@@ -276,11 +277,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 28,
   },
   primaryButton: {
-    backgroundColor: '#5B67F1',
+    backgroundColor: theme.colors.accent,
     paddingVertical: 18,
     borderRadius: 14,
     alignItems: 'center',
-    shadowColor: '#5B67F1',
+    shadowColor: theme.colors.accent,
     shadowOffset: {
       width: 0,
       height: 4,
@@ -292,7 +293,7 @@ const styles = StyleSheet.create({
   primaryButtonText: {
     fontSize: 17,
     fontWeight: '700',
-    color: '#fff',
+    color: theme.colors.textPrimary,
     letterSpacing: 0.5,
   },
   secondaryButton: {
@@ -306,7 +307,7 @@ const styles = StyleSheet.create({
   secondaryButtonText: {
     fontSize: 17,
     fontWeight: '600',
-    color: '#fff',
+    color: theme.colors.textPrimary,
     letterSpacing: 0.3,
   },
   guestButton: {
@@ -318,7 +319,7 @@ const styles = StyleSheet.create({
   guestButtonText: {
     fontSize: 16,
     fontWeight: '500',
-    color: '#888',
+    color: theme.colors.textMuted,
     letterSpacing: 0.2,
   },
 });

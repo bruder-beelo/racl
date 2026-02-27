@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { Vendor, CarListing } from '../types';
+import { theme } from '../theme/colors';
 
 interface VendorCardProps {
   vendor: Vendor;
@@ -66,7 +67,7 @@ export const VendorCard: React.FC<VendorCardProps> = ({ vendor, listing, onBook 
           activeOpacity={0.8}
         >
           {isLoading ? (
-            <ActivityIndicator color="#fff" size="small" />
+            <ActivityIndicator color={theme.colors.textPrimary} size="small" />
           ) : (
             <Text style={styles.bookButtonText}>Book now</Text>
           )}
@@ -78,12 +79,12 @@ export const VendorCard: React.FC<VendorCardProps> = ({ vendor, listing, onBook 
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: '#1a1a1a',
+    backgroundColor: theme.colors.surface1,
     borderRadius: 12,
     padding: 16,
     marginBottom: 16,
     borderWidth: 1,
-    borderColor: '#333',
+    borderColor: theme.colors.border,
   },
   header: {
     marginBottom: 16,
@@ -96,13 +97,13 @@ const styles = StyleSheet.create({
     width: 48,
     height: 48,
     borderRadius: 24,
-    backgroundColor: '#5B67F1',
+    backgroundColor: theme.colors.accent,
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 12,
   },
   avatarText: {
-    color: '#fff',
+    color: theme.colors.textPrimary,
     fontSize: 20,
     fontWeight: '600',
   },
@@ -112,7 +113,7 @@ const styles = StyleSheet.create({
   vendorName: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#fff',
+    color: theme.colors.textPrimary,
     marginBottom: 4,
   },
   statsRow: {
@@ -127,20 +128,20 @@ const styles = StyleSheet.create({
   rating: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#5B67F1',
+    color: theme.colors.accent,
     marginRight: 4,
   },
   reviewCount: {
     fontSize: 13,
-    color: '#aaa',
+    color: theme.colors.textSecondary,
   },
   trips: {
     fontSize: 13,
-    color: '#aaa',
+    color: theme.colors.textSecondary,
   },
   divider: {
     height: 1,
-    backgroundColor: '#333',
+    backgroundColor: theme.colors.border,
     marginBottom: 16,
   },
   details: {
@@ -153,12 +154,12 @@ const styles = StyleSheet.create({
   },
   detailLabel: {
     fontSize: 14,
-    color: '#888',
+    color: theme.colors.textMuted,
   },
   detailValue: {
     fontSize: 14,
     fontWeight: '500',
-    color: '#fff',
+    color: theme.colors.textPrimary,
   },
   footer: {
     flexDirection: 'row',
@@ -172,15 +173,15 @@ const styles = StyleSheet.create({
   price: {
     fontSize: 28,
     fontWeight: '700',
-    color: '#fff',
+    color: theme.colors.textPrimary,
   },
   priceLabel: {
     fontSize: 14,
-    color: '#aaa',
+    color: theme.colors.textSecondary,
     marginLeft: 4,
   },
   bookButton: {
-    backgroundColor: '#5B67F1',
+    backgroundColor: theme.colors.accent,
     paddingHorizontal: 32,
     paddingVertical: 14,
     borderRadius: 8,
@@ -190,11 +191,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   bookButtonDisabled: {
-    backgroundColor: '#4a5dc9',
+    backgroundColor: theme.colors.accentHover,
     opacity: 0.7,
   },
   bookButtonText: {
-    color: '#fff',
+    color: theme.colors.textPrimary,
     fontSize: 16,
     fontWeight: '600',
   },
