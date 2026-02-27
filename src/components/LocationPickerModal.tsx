@@ -9,6 +9,7 @@ import {
   TextInput,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { theme } from '../theme/colors';
 
 interface LocationPickerModalProps {
   visible: boolean;
@@ -69,7 +70,7 @@ export const LocationPickerModal: React.FC<LocationPickerModalProps> = ({
         <View style={styles.modalContainer}>
           <View style={styles.header}>
             <TouchableOpacity onPress={handleClose} style={styles.closeButton}>
-              <Ionicons name="close" size={24} color="#fff" />
+              <Ionicons name="close" size={24} color={theme.colors.textPrimary} />
             </TouchableOpacity>
             <Text style={styles.headerTitle}>Select Location</Text>
             <View style={styles.placeholder} />
@@ -78,11 +79,11 @@ export const LocationPickerModal: React.FC<LocationPickerModalProps> = ({
           <ScrollView showsVerticalScrollIndicator={false}>
             {/* Search Bar */}
             <View style={styles.searchWrapper}>
-              <Ionicons name="search-outline" size={20} color="#888" style={styles.searchIcon} />
+              <Ionicons name="search-outline" size={20} color={theme.colors.textMuted} style={styles.searchIcon} />
               <TextInput
                 style={styles.searchInput}
                 placeholder="Search location..."
-                placeholderTextColor="#666"
+                placeholderTextColor={theme.colors.textDisabled}
                 value={pickupLocation}
                 onChangeText={setPickupLocation}
                 autoFocus
@@ -98,7 +99,7 @@ export const LocationPickerModal: React.FC<LocationPickerModalProps> = ({
                 onClose();
               }}
             >
-              <Ionicons name="navigate" size={20} color="#5B67F1" />
+              <Ionicons name="navigate" size={20} color={theme.colors.accent} />
               <Text style={styles.currentLocationText}>Use My Current Location</Text>
             </TouchableOpacity>
 
@@ -114,11 +115,11 @@ export const LocationPickerModal: React.FC<LocationPickerModalProps> = ({
 const styles = StyleSheet.create({
   overlay: {
     flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+    backgroundColor: theme.colors.scrim,
     justifyContent: 'flex-end',
   },
   modalContainer: {
-    backgroundColor: '#1a1a1a',
+    backgroundColor: theme.colors.surface1,
     borderTopLeftRadius: 24,
     borderTopRightRadius: 24,
     paddingTop: 20,
@@ -141,7 +142,7 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 18,
     fontWeight: '700',
-    color: '#fff',
+    color: theme.colors.textPrimary,
   },
   placeholder: {
     width: 40,
@@ -149,10 +150,10 @@ const styles = StyleSheet.create({
   searchWrapper: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#0d0d0d',
+    backgroundColor: theme.colors.surface3,
     borderRadius: 12,
     borderWidth: 1,
-    borderColor: '#333',
+    borderColor: theme.colors.border,
     paddingHorizontal: 16,
     paddingVertical: 14,
     marginHorizontal: 20,
@@ -165,16 +166,16 @@ const styles = StyleSheet.create({
   searchInput: {
     flex: 1,
     fontSize: 16,
-    color: '#fff',
+    color: theme.colors.textPrimary,
     padding: 0,
   },
   currentLocationButton: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#0d0d0d',
+    backgroundColor: theme.colors.surface3,
     borderRadius: 12,
     borderWidth: 1,
-    borderColor: '#333',
+    borderColor: theme.colors.border,
     paddingHorizontal: 16,
     paddingVertical: 14,
     marginHorizontal: 20,
@@ -183,7 +184,7 @@ const styles = StyleSheet.create({
   },
   currentLocationText: {
     fontSize: 15,
-    color: '#fff',
+    color: theme.colors.textPrimary,
     fontWeight: '500',
   },
 });

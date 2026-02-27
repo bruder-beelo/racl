@@ -5,6 +5,7 @@ import { BookScreen } from '../screens/BookScreen';
 import { ReservationsScreen } from '../screens/ReservationsScreen';
 import { AccountScreen } from '../screens/AccountScreen';
 import { MainTabParamList } from './types';
+import { theme } from '../theme/colors';
 
 const Tab = createBottomTabNavigator<MainTabParamList>();
 
@@ -17,7 +18,7 @@ export const MainTabNavigator = () => {
         tabBarHideOnKeyboard: true,
         tabBarStyle: {
           position: 'absolute',
-          backgroundColor: '#5B67F1',
+          backgroundColor: theme.colors.accent,
           borderTopWidth: 0,
           bottom: 45,
           left: 12,
@@ -26,7 +27,7 @@ export const MainTabNavigator = () => {
           borderRadius: 28,
           paddingBottom: 6,
           paddingTop: 6,
-          shadowColor: '#5B67F1',
+          shadowColor: theme.colors.accent,
           shadowOffset: {
             width: 0,
             height: 8,
@@ -35,8 +36,8 @@ export const MainTabNavigator = () => {
           shadowRadius: 16,
           elevation: 20,
         },
-        tabBarActiveTintColor: '#fff',
-        tabBarInactiveTintColor: 'rgba(255, 255, 255, 0.5)',
+        tabBarActiveTintColor: theme.colors.textPrimary,
+        tabBarInactiveTintColor: theme.colors.tabBarInactive,
         tabBarLabelStyle: {
           fontSize: 11,
           fontWeight: '700',

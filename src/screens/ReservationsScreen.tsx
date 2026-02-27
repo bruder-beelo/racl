@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { useAuth } from '../contexts/AuthContext';
+import { theme } from '../theme/colors';
 
 export const ReservationsScreen: React.FC = () => {
   const { isAuthenticated, login } = useAuth();
@@ -20,7 +21,7 @@ export const ReservationsScreen: React.FC = () => {
 
         {!isAuthenticated ? (
           <View style={styles.emptyState}>
-            <Ionicons name="calendar-outline" size={80} color="#333" />
+            <Ionicons name="calendar-outline" size={80} color={theme.colors.border} />
             <Text style={styles.emptyTitle}>No Trips Yet</Text>
             <Text style={styles.emptySubtitle}>
               Sign in to book your first car
@@ -39,7 +40,7 @@ export const ReservationsScreen: React.FC = () => {
           </View>
         ) : (
           <View style={styles.authenticatedContent}>
-            <Ionicons name="calendar-outline" size={64} color="#333" />
+            <Ionicons name="calendar-outline" size={64} color={theme.colors.border} />
             <Text style={styles.placeholderTitle}>No upcoming trips</Text>
             <Text style={styles.placeholderSubtitle}>Book a car to see your reservations here</Text>
           </View>
@@ -52,7 +53,7 @@ export const ReservationsScreen: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#000',
+    backgroundColor: theme.colors.background,
   },
   content: {
     flex: 1,
@@ -62,12 +63,12 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     paddingBottom: 24,
     borderBottomWidth: 1,
-    borderBottomColor: '#1a1a1a',
+    borderBottomColor: theme.colors.surface1,
   },
   title: {
     fontSize: 28,
     fontWeight: '700',
-    color: '#fff',
+    color: theme.colors.textPrimary,
   },
   emptyState: {
     flex: 1,
@@ -79,23 +80,23 @@ const styles = StyleSheet.create({
   emptyTitle: {
     fontSize: 24,
     fontWeight: '700',
-    color: '#fff',
+    color: theme.colors.textPrimary,
     marginTop: 24,
     marginBottom: 12,
   },
   emptySubtitle: {
     fontSize: 16,
-    color: '#888',
+    color: theme.colors.textMuted,
     textAlign: 'center',
     lineHeight: 24,
     marginBottom: 40,
   },
   loginButton: {
-    backgroundColor: '#5B67F1',
+    backgroundColor: theme.colors.accent,
     borderRadius: 14,
     paddingVertical: 18,
     paddingHorizontal: 60,
-    shadowColor: '#5B67F1',
+    shadowColor: theme.colors.accent,
     shadowOffset: {
       width: 0,
       height: 4,
@@ -107,7 +108,7 @@ const styles = StyleSheet.create({
   loginButtonText: {
     fontSize: 17,
     fontWeight: '700',
-    color: '#fff',
+    color: theme.colors.textPrimary,
     letterSpacing: 0.5,
   },
   signupPrompt: {
@@ -117,12 +118,12 @@ const styles = StyleSheet.create({
   },
   signupText: {
     fontSize: 15,
-    color: '#888',
+    color: theme.colors.textMuted,
   },
   signupLink: {
     fontSize: 15,
     fontWeight: '600',
-    color: '#5B67F1',
+    color: theme.colors.accent,
   },
   authenticatedContent: {
     flex: 1,
@@ -134,14 +135,14 @@ const styles = StyleSheet.create({
   placeholderTitle: {
     fontSize: 20,
     fontWeight: '700',
-    color: '#fff',
+    color: theme.colors.textPrimary,
     marginTop: 20,
     marginBottom: 8,
     textAlign: 'center',
   },
   placeholderSubtitle: {
     fontSize: 15,
-    color: '#888',
+    color: theme.colors.textMuted,
     textAlign: 'center',
   },
 });

@@ -15,6 +15,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../navigation/types';
 import { DateTimePickerModal } from '../components/DateTimePickerModal';
 import { LocationPickerModal } from '../components/LocationPickerModal';
+import { theme } from '../theme/colors';
 
 type BookScreenNavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
@@ -87,11 +88,11 @@ export const BookScreen: React.FC = () => {
               onPress={() => setShowLocationPicker(true)}
               activeOpacity={1}
             >
-              <Ionicons name="location-outline" size={20} color="#888" style={styles.inputIcon} />
+              <Ionicons name="location-outline" size={20} color={theme.colors.textMuted} style={styles.inputIcon} />
               <TextInput
                 style={styles.input}
                 placeholder={sameLocation ? 'Pickup and Dropoff Location' : 'Pickup Location'}
-                placeholderTextColor="#666"
+                placeholderTextColor={theme.colors.textDisabled}
                 value={pickupLocation}
                 onChangeText={setPickupLocation}
                 editable={false}
@@ -106,11 +107,11 @@ export const BookScreen: React.FC = () => {
                 onPress={() => setShowLocationPicker(true)}
                 activeOpacity={1}
               >
-                <Ionicons name="location-outline" size={20} color="#888" style={styles.inputIcon} />
+                <Ionicons name="location-outline" size={20} color={theme.colors.textMuted} style={styles.inputIcon} />
                 <TextInput
                   style={styles.input}
                   placeholder="Enter dropoff location"
-                  placeholderTextColor="#666"
+                  placeholderTextColor={theme.colors.textDisabled}
                   value={dropoffLocation}
                   onChangeText={setDropoffLocation}
                   editable={false}
@@ -125,8 +126,8 @@ export const BookScreen: React.FC = () => {
             <Switch
               value={sameLocation}
               onValueChange={setSameLocation}
-              trackColor={{ false: '#333', true: '#5B67F1' }}
-              thumbColor={sameLocation ? '#fff' : '#888'}
+              trackColor={{ false: theme.colors.border, true: theme.colors.accent }}
+              thumbColor={sameLocation ? theme.colors.textPrimary : theme.colors.textMuted}
               style={{ transform: [{ scaleX: 0.8 }, { scaleY: 0.8 }] }}
             />
             <Text style={styles.toggleLabel}>Return to same location</Text>
@@ -150,7 +151,7 @@ export const BookScreen: React.FC = () => {
               onPress={() => setShowDateTimePicker(true)}
             >
               <View style={styles.dateTimeButtonContent}>
-                <Ionicons name="calendar-outline" size={20} color="#888" />
+                <Ionicons name="calendar-outline" size={20} color={theme.colors.textMuted} />
                 <View style={styles.dateTimeTexts}>
                   <Text style={styles.dateTimeMainText}>
                     {pickupDate && dropoffDate
@@ -163,7 +164,7 @@ export const BookScreen: React.FC = () => {
                     </Text>
                   )}
                 </View>
-                <Ionicons name="chevron-forward" size={20} color="#888" />
+                <Ionicons name="chevron-forward" size={20} color={theme.colors.textMuted} />
               </View>
             </TouchableOpacity>
           </View>
@@ -182,7 +183,7 @@ export const BookScreen: React.FC = () => {
               onPress={() => setShowAgeDropdown(!showAgeDropdown)}
             >
               <View style={styles.ageButtonContent}>
-                <Ionicons name="person-outline" size={20} color="#888" />
+                <Ionicons name="person-outline" size={20} color={theme.colors.textMuted} />
                 <View style={styles.ageTexts}>
                   <Text style={styles.ageMainText}>
                     {driverAge || 'Driver Age'}
@@ -191,7 +192,7 @@ export const BookScreen: React.FC = () => {
                 <Ionicons
                   name={showAgeDropdown ? 'chevron-up' : 'chevron-down'}
                   size={20}
-                  color="#888"
+                  color={theme.colors.textMuted}
                 />
               </View>
             </TouchableOpacity>
@@ -209,7 +210,7 @@ export const BookScreen: React.FC = () => {
                   >
                     <Text style={styles.ageDropdownItemText}>{option}</Text>
                     {driverAge === option && (
-                      <Ionicons name="checkmark" size={20} color="#5B67F1" />
+                      <Ionicons name="checkmark" size={20} color={theme.colors.accent} />
                     )}
                   </TouchableOpacity>
                 ))}
@@ -237,7 +238,7 @@ export const BookScreen: React.FC = () => {
             }}
           >
             <Text style={styles.searchButtonText}>Find Your Car</Text>
-            <Ionicons name="arrow-forward" size={20} color="#fff" />
+            <Ionicons name="arrow-forward" size={20} color={theme.colors.textPrimary} />
           </TouchableOpacity>
         </View>
       </ScrollView>
@@ -248,7 +249,7 @@ export const BookScreen: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#000',
+    backgroundColor: theme.colors.background,
   },
   scrollView: {
     flex: 1,
@@ -264,12 +265,12 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 28,
     fontWeight: '700',
-    color: '#fff',
+    color: theme.colors.textPrimary,
     marginBottom: 8,
   },
   subtitle: {
     fontSize: 16,
-    color: '#888',
+    color: theme.colors.textMuted,
     lineHeight: 24,
   },
   form: {
@@ -281,16 +282,16 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#aaa',
+    color: theme.colors.textSecondary,
     marginBottom: 8,
   },
   inputWrapper: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#1a1a1a',
+    backgroundColor: theme.colors.surface1,
     borderRadius: 12,
     borderWidth: 1,
-    borderColor: '#333',
+    borderColor: theme.colors.border,
     paddingHorizontal: 16,
     height: 56,
   },
@@ -302,16 +303,16 @@ const styles = StyleSheet.create({
   inputWrapperBottom: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#1a1a1a',
+    backgroundColor: theme.colors.surface1,
     borderRadius: 12,
     borderTopLeftRadius: 0,
     borderTopRightRadius: 0,
     borderWidth: 1,
-    borderColor: '#333',
+    borderColor: theme.colors.border,
     paddingHorizontal: 16,
     height: 56,
     borderTopWidth: 0.5,
-    borderTopColor: '#444',
+    borderTopColor: theme.colors.borderMedium,
   },
   inputIcon: {
     marginRight: 12,
@@ -319,7 +320,7 @@ const styles = StyleSheet.create({
   input: {
     flex: 1,
     fontSize: 16,
-    color: '#fff',
+    color: theme.colors.textPrimary,
   },
   toggleWrapper: {
     flexDirection: 'row',
@@ -328,7 +329,7 @@ const styles = StyleSheet.create({
   },
   toggleLabel: {
     fontSize: 14,
-    color: '#888',
+    color: theme.colors.textMuted,
     fontWeight: '500',
     marginLeft: 8,
   },
@@ -340,7 +341,7 @@ const styles = StyleSheet.create({
   detailsLabel: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#aaa',
+    color: theme.colors.textSecondary,
     flex: 1,
     textAlign: 'center',
   },
@@ -354,10 +355,10 @@ const styles = StyleSheet.create({
   dateTimeContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#1a1a1a',
+    backgroundColor: theme.colors.surface1,
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: '#333',
+    borderColor: theme.colors.border,
     paddingHorizontal: 10,
     height: 44,
   },
@@ -367,20 +368,20 @@ const styles = StyleSheet.create({
   miniInput: {
     flex: 1,
     fontSize: 13,
-    color: '#fff',
+    color: theme.colors.textPrimary,
     paddingVertical: 0,
   },
   divider: {
     width: 1,
     height: 20,
-    backgroundColor: '#444',
+    backgroundColor: theme.colors.borderMedium,
     marginHorizontal: 6,
   },
   ageButton: {
-    backgroundColor: '#1a1a1a',
+    backgroundColor: theme.colors.surface1,
     borderRadius: 12,
     borderWidth: 1,
-    borderColor: '#333',
+    borderColor: theme.colors.border,
     paddingVertical: 16,
     paddingHorizontal: 16,
   },
@@ -395,14 +396,14 @@ const styles = StyleSheet.create({
   },
   ageMainText: {
     fontSize: 16,
-    color: '#fff',
+    color: theme.colors.textPrimary,
     fontWeight: '500',
   },
   ageDropdownMenu: {
-    backgroundColor: '#1a1a1a',
+    backgroundColor: theme.colors.surface1,
     borderRadius: 12,
     borderWidth: 1,
-    borderColor: '#333',
+    borderColor: theme.colors.border,
     marginTop: 8,
     overflow: 'hidden',
   },
@@ -413,17 +414,17 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 14,
     borderBottomWidth: 1,
-    borderBottomColor: '#2a2a2a',
+    borderBottomColor: theme.colors.surface2,
   },
   ageDropdownItemText: {
     fontSize: 15,
-    color: '#fff',
+    color: theme.colors.textPrimary,
   },
   dateTimeButton: {
-    backgroundColor: '#1a1a1a',
+    backgroundColor: theme.colors.surface1,
     borderRadius: 12,
     borderWidth: 1,
-    borderColor: '#333',
+    borderColor: theme.colors.border,
     paddingVertical: 16,
     paddingHorizontal: 16,
   },
@@ -438,24 +439,24 @@ const styles = StyleSheet.create({
   },
   dateTimeMainText: {
     fontSize: 16,
-    color: '#fff',
+    color: theme.colors.textPrimary,
     fontWeight: '500',
   },
   dateTimeSubText: {
     fontSize: 13,
-    color: '#888',
+    color: theme.colors.textMuted,
     marginTop: 4,
   },
   searchButton: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#5B67F1',
+    backgroundColor: theme.colors.accent,
     borderRadius: 14,
     paddingVertical: 18,
     marginTop: 16,
     gap: 8,
-    shadowColor: '#5B67F1',
+    shadowColor: theme.colors.accent,
     shadowOffset: {
       width: 0,
       height: 4,
@@ -465,13 +466,13 @@ const styles = StyleSheet.create({
     elevation: 8,
   },
   searchButtonDisabled: {
-    backgroundColor: '#333',
+    backgroundColor: theme.colors.border,
     shadowOpacity: 0,
   },
   searchButtonText: {
     fontSize: 17,
     fontWeight: '700',
-    color: '#fff',
+    color: theme.colors.textPrimary,
     letterSpacing: 0.5,
   },
 });

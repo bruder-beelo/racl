@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { CarWithListings } from '../types';
+import { theme } from '../theme/colors';
 
 interface CarCardProps {
   car: CarWithListings;
@@ -56,7 +57,7 @@ export const CarCard: React.FC<CarCardProps> = ({ car, onPress }) => {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: '#121212',
+    backgroundColor: theme.colors.surface4,
     borderRadius: 0,
     marginBottom: 0,
     overflow: 'hidden',
@@ -69,7 +70,7 @@ const styles = StyleSheet.create({
   image: {
     width: '100%',
     height: '100%',
-    backgroundColor: '#000',
+    backgroundColor: theme.colors.background,
   },
   content: {
     padding: 16,
@@ -78,12 +79,12 @@ const styles = StyleSheet.create({
   carName: {
     fontSize: 22,
     fontWeight: '700',
-    color: '#fff',
+    color: theme.colors.textPrimary,
     marginBottom: 2,
   },
   carSubtitle: {
     fontSize: 15,
-    color: '#aaa',
+    color: theme.colors.textSecondary,
     marginBottom: 12,
   },
   ratingRow: {
@@ -98,12 +99,12 @@ const styles = StyleSheet.create({
   ratingNumber: {
     fontSize: 15,
     fontWeight: '600',
-    color: '#5B67F1',
+    color: theme.colors.accent,
     marginRight: 6,
   },
   trips: {
     fontSize: 13,
-    color: '#aaa',
+    color: theme.colors.textSecondary,
     marginRight: 12,
   },
   badge: {
@@ -112,7 +113,7 @@ const styles = StyleSheet.create({
   },
   badgeText: {
     fontSize: 11,
-    color: '#888',
+    color: theme.colors.textMuted,
     fontWeight: '500',
   },
   priceRow: {
@@ -124,22 +125,22 @@ const styles = StyleSheet.create({
   },
   strikethrough: {
     fontSize: 16,
-    color: '#666',
+    color: theme.colors.textDisabled,
     textDecorationLine: 'line-through',
     marginRight: 8,
   },
   price: {
     fontSize: 20,
     fontWeight: '700',
-    color: '#fff',
+    color: theme.colors.textPrimary,
   },
   priceLabel: {
     fontSize: 20,
     fontWeight: '700',
-    color: '#fff',
+    color: theme.colors.textPrimary,
   },
   beforeTaxes: {
     fontSize: 13,
-    color: '#888',
+    color: theme.colors.textMuted,
   },
 });

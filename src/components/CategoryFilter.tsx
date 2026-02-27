@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+import { theme } from '../theme/colors';
 
 interface CategoryFilterProps {
   categories: string[];
@@ -54,21 +55,21 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 10,
     borderRadius: 20,
-    backgroundColor: '#1a1a1a',
+    backgroundColor: theme.colors.surface1,
     borderWidth: 1,
-    borderColor: '#333',
+    borderColor: theme.colors.border,
     marginRight: 8,
   },
   categoryButtonActive: {
-    backgroundColor: '#5B67F1',
-    borderColor: '#5B67F1',
+    backgroundColor: theme.colors.accent,
+    borderColor: theme.colors.accent,
   },
   categoryText: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#aaa',
+    color: theme.colors.textSecondary,
   },
   categoryTextActive: {
-    color: '#fff',
+    color: theme.colors.textOnAccent,
   },
 });

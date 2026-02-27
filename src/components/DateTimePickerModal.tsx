@@ -8,6 +8,7 @@ import {
   ScrollView,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { theme } from '../theme/colors';
 
 interface DateTimePickerModalProps {
   visible: boolean;
@@ -149,7 +150,7 @@ export const DateTimePickerModal: React.FC<DateTimePickerModalProps> = ({
         <View style={styles.modalContainer}>
           <View style={styles.header}>
             <TouchableOpacity onPress={onClose} style={styles.closeButton}>
-              <Ionicons name="close" size={24} color="#fff" />
+              <Ionicons name="close" size={24} color={theme.colors.textPrimary} />
             </TouchableOpacity>
             <Text style={styles.headerTitle}>Select Dates & Times</Text>
             <View style={styles.placeholder} />
@@ -166,14 +167,14 @@ export const DateTimePickerModal: React.FC<DateTimePickerModalProps> = ({
                 <Ionicons
                   name="chevron-back"
                   size={24}
-                  color={isAtCurrentMonth ? '#555' : '#fff'}
+                  color={isAtCurrentMonth ? theme.colors.textDark : theme.colors.textPrimary}
                 />
               </TouchableOpacity>
               <Text style={styles.monthText}>
                 {monthNames[currentMonth.getMonth()]} {currentMonth.getFullYear()}
               </Text>
               <TouchableOpacity onPress={nextMonth} style={styles.navButton}>
-                <Ionicons name="chevron-forward" size={24} color="#fff" />
+                <Ionicons name="chevron-forward" size={24} color={theme.colors.textPrimary} />
               </TouchableOpacity>
             </View>
 
@@ -229,7 +230,7 @@ export const DateTimePickerModal: React.FC<DateTimePickerModalProps> = ({
                 <Text style={styles.selectedDateLabel}>Pickup</Text>
                 <Text style={styles.selectedDateText}>{formatDate(selectedPickupDate)}</Text>
               </View>
-              <Ionicons name="arrow-forward" size={20} color="#888" />
+              <Ionicons name="arrow-forward" size={20} color={theme.colors.textMuted} />
               <View style={styles.selectedDateBox}>
                 <Text style={styles.selectedDateLabel}>Dropoff</Text>
                 <Text style={styles.selectedDateText}>{formatDate(selectedDropoffDate)}</Text>
@@ -334,11 +335,11 @@ export const DateTimePickerModal: React.FC<DateTimePickerModalProps> = ({
 const styles = StyleSheet.create({
   overlay: {
     flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+    backgroundColor: theme.colors.scrim,
     justifyContent: 'flex-end',
   },
   modalContainer: {
-    backgroundColor: '#1a1a1a',
+    backgroundColor: theme.colors.surface1,
     borderTopLeftRadius: 24,
     borderTopRightRadius: 24,
     paddingTop: 20,
@@ -361,7 +362,7 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 18,
     fontWeight: '700',
-    color: '#fff',
+    color: theme.colors.textPrimary,
   },
   placeholder: {
     width: 40,
@@ -379,7 +380,7 @@ const styles = StyleSheet.create({
   monthText: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#fff',
+    color: theme.colors.textPrimary,
   },
   dayHeaders: {
     flexDirection: 'row',
@@ -391,7 +392,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 12,
     fontWeight: '600',
-    color: '#888',
+    color: theme.colors.textMuted,
   },
   calendar: {
     flexDirection: 'row',
@@ -409,25 +410,25 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   selectedDay: {
-    backgroundColor: '#5B67F1',
+    backgroundColor: theme.colors.accent,
     borderRadius: 8,
   },
   rangeDay: {
-    backgroundColor: 'rgba(91, 103, 241, 0.2)',
+    backgroundColor: theme.colors.accentLight,
   },
   pastDay: {
     opacity: 0.3,
   },
   dayText: {
     fontSize: 14,
-    color: '#fff',
+    color: theme.colors.textPrimary,
   },
   selectedDayText: {
     fontWeight: '700',
-    color: '#fff',
+    color: theme.colors.textPrimary,
   },
   pastDayText: {
-    color: '#555',
+    color: theme.colors.textDark,
   },
   selectedDatesRow: {
     flexDirection: 'row',
@@ -442,13 +443,13 @@ const styles = StyleSheet.create({
   },
   selectedDateLabel: {
     fontSize: 12,
-    color: '#888',
+    color: theme.colors.textMuted,
     marginBottom: 4,
   },
   selectedDateText: {
     fontSize: 18,
     fontWeight: '700',
-    color: '#fff',
+    color: theme.colors.textPrimary,
   },
   timeSection: {
     paddingHorizontal: 20,
@@ -460,7 +461,7 @@ const styles = StyleSheet.create({
   timeLabel: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#aaa',
+    color: theme.colors.textSecondary,
     marginBottom: 10,
   },
   timeScroll: {
@@ -470,41 +471,41 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   timeChip: {
-    backgroundColor: '#2a2a2a',
+    backgroundColor: theme.colors.surface2,
     paddingHorizontal: 16,
     paddingVertical: 10,
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: '#333',
+    borderColor: theme.colors.border,
   },
   timeChipSelected: {
-    backgroundColor: '#5B67F1',
-    borderColor: '#5B67F1',
+    backgroundColor: theme.colors.accent,
+    borderColor: theme.colors.accent,
   },
   timeChipDisabled: {
-    backgroundColor: '#1a1a1a',
-    borderColor: '#222',
+    backgroundColor: theme.colors.surface1,
+    borderColor: theme.colors.borderLight,
     opacity: 0.4,
   },
   timeChipText: {
     fontSize: 14,
-    color: '#888',
+    color: theme.colors.textMuted,
   },
   timeChipTextSelected: {
-    color: '#fff',
+    color: theme.colors.textPrimary,
     fontWeight: '600',
   },
   timeChipTextDisabled: {
-    color: '#555',
+    color: theme.colors.textDark,
   },
   confirmButton: {
-    backgroundColor: '#5B67F1',
+    backgroundColor: theme.colors.accent,
     marginHorizontal: 20,
     marginTop: 20,
     paddingVertical: 18,
     borderRadius: 14,
     alignItems: 'center',
-    shadowColor: '#5B67F1',
+    shadowColor: theme.colors.accent,
     shadowOffset: {
       width: 0,
       height: 4,
@@ -514,13 +515,13 @@ const styles = StyleSheet.create({
     elevation: 8,
   },
   confirmButtonDisabled: {
-    backgroundColor: '#333',
+    backgroundColor: theme.colors.border,
     shadowOpacity: 0,
   },
   confirmButtonText: {
     fontSize: 17,
     fontWeight: '700',
-    color: '#fff',
+    color: theme.colors.textPrimary,
     letterSpacing: 0.5,
   },
 });
