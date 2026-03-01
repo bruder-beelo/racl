@@ -11,7 +11,12 @@ interface CompactCarCardProps {
 }
 
 export const CompactCarCard: React.FC<CompactCarCardProps> = ({ car, onPress, onBook }) => {
-  const listing = car.listings[0];
+  const listing = car.listings?.[0];
+
+  // Guard: Return null if no listing available
+  if (!listing) {
+    return null;
+  }
 
   const handleBookPress = (e: any) => {
     e.stopPropagation();
