@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../navigation/types';
@@ -196,6 +197,7 @@ const LUXURY_PICKS: CarWithListings[] = [
 ];
 
 export const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
+  const tabBarHeight = useBottomTabBarHeight();
 
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
@@ -290,7 +292,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
         </View>
 
         {/* Bottom Padding for Tab Bar */}
-        <View style={{ height: 100 }} />
+        <View style={{ height: tabBarHeight }} />
       </ScrollView>
     </SafeAreaView>
   );
