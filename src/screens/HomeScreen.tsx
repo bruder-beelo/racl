@@ -46,7 +46,7 @@ const BEST_PRICED_CARS: CarWithListings[] = [
       distance: '2.5 mi',
       vendor: {
         id: 'v1',
-        name: 'EcoRent',
+        name: 'Abou Ali Rental',
         rating: 4.9,
         reviewCount: 234,
         tripCount: 500,
@@ -79,7 +79,7 @@ const BEST_PRICED_CARS: CarWithListings[] = [
       distance: '1.8 mi',
       vendor: {
         id: 'v2',
-        name: 'City Cars',
+        name: 'Alo Rental',
         rating: 4.8,
         reviewCount: 189,
         tripCount: 420,
@@ -115,7 +115,7 @@ const WEEKLY_DEALS: CarWithListings[] = [
       distance: '3.2 mi',
       vendor: {
         id: 'v3',
-        name: 'Adventure Rentals',
+        name: 'Abu Hadi Rental',
         rating: 4.9,
         reviewCount: 312,
         tripCount: 650,
@@ -151,7 +151,7 @@ const LUXURY_PICKS: CarWithListings[] = [
       distance: '4.1 mi',
       vendor: {
         id: 'v4',
-        name: 'Prestige Motors',
+        name: 'Abou Ali Rental',
         rating: 5.0,
         reviewCount: 156,
         tripCount: 280,
@@ -184,7 +184,7 @@ const LUXURY_PICKS: CarWithListings[] = [
       distance: '3.8 mi',
       vendor: {
         id: 'v5',
-        name: 'Elite Rentals',
+        name: 'Alo Rental',
         rating: 4.9,
         reviewCount: 203,
         tripCount: 380,
@@ -209,25 +209,6 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
           <TouchableOpacity style={styles.notificationButton}>
             <Ionicons name="notifications-outline" size={24} color={theme.colors.textPrimary} />
           </TouchableOpacity>
-        </View>
-
-        {/* Quick Stats */}
-        <View style={styles.statsContainer}>
-          <View style={styles.statCard}>
-            <Ionicons name="car-outline" size={28} color={theme.colors.accent} />
-            <Text style={styles.statNumber}>2,450+</Text>
-            <Text style={styles.statLabel}>Available Cars</Text>
-          </View>
-          <View style={styles.statCard}>
-            <Ionicons name="people-outline" size={28} color={theme.colors.accent} />
-            <Text style={styles.statNumber}>500+</Text>
-            <Text style={styles.statLabel}>Trusted Hosts</Text>
-          </View>
-          <View style={styles.statCard}>
-            <Ionicons name="shield-checkmark-outline" size={28} color={theme.colors.accent} />
-            <Text style={styles.statNumber}>100%</Text>
-            <Text style={styles.statLabel}>Verified</Text>
-          </View>
         </View>
 
         {/* Best Priced Cars */}
@@ -344,33 +325,6 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.surface1,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  statsContainer: {
-    flexDirection: 'row',
-    paddingHorizontal: 20,
-    gap: 12,
-    marginBottom: 24,
-  },
-  statCard: {
-    flex: 1,
-    backgroundColor: theme.colors.surface1,
-    borderRadius: 16,
-    padding: 16,
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: theme.colors.border,
-  },
-  statNumber: {
-    fontSize: 20,
-    fontWeight: '700',
-    color: theme.colors.textPrimary,
-    marginTop: 8,
-    marginBottom: 4,
-  },
-  statLabel: {
-    fontSize: 12,
-    color: theme.colors.textMuted,
-    textAlign: 'center',
   },
   section: {
     marginBottom: 32,

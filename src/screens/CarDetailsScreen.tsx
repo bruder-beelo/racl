@@ -88,10 +88,7 @@ export const CarDetailsScreen: React.FC<CarDetailsScreenProps> = ({ navigation, 
           </View>
 
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>
-              Available from {car.listings.length} {car.listings.length === 1 ? 'vendor' : 'vendors'}
-            </Text>
-            <Text style={styles.sectionSubtitle}>Sorted by price (lowest first)</Text>
+            <Text style={styles.sectionTitle}>Rental Information</Text>
             {car.listings.map((listing) => (
               <VendorCard
                 key={listing.id}
