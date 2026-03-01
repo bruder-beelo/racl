@@ -134,7 +134,7 @@ export const cars: Car[] = [
 export const vendors: Vendor[] = [
   {
     id: 'v1',
-    name: 'Enterprise Rent-A-Car',
+    name: 'Abou Ali Rental',
     rating: 4.9,
     reviewCount: 87,
     tripCount: 120,
@@ -143,7 +143,7 @@ export const vendors: Vendor[] = [
   },
   {
     id: 'v2',
-    name: 'Hertz',
+    name: 'Alo Rental',
     rating: 4.8,
     reviewCount: 65,
     tripCount: 89,
@@ -152,7 +152,7 @@ export const vendors: Vendor[] = [
   },
   {
     id: 'v3',
-    name: 'Avis Budget Group',
+    name: 'Abu Hadi Rental',
     rating: 5.0,
     reviewCount: 120,
     tripCount: 200,
@@ -161,7 +161,7 @@ export const vendors: Vendor[] = [
   },
   {
     id: 'v4',
-    name: 'Sixt Rent a Car',
+    name: 'Abou Ali Rental',
     rating: 4.7,
     reviewCount: 43,
     tripCount: 67,

@@ -1,6 +1,7 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
+import { HomeScreen } from '../screens/HomeScreen';
 import { BookScreen } from '../screens/BookScreen';
 import { ReservationsScreen } from '../screens/ReservationsScreen';
 import { AccountScreen } from '../screens/AccountScreen';
@@ -23,10 +24,10 @@ export const MainTabNavigator = () => {
           bottom: 45,
           left: 12,
           right: 12,
-          height: 55,
-          borderRadius: 28,
-          paddingBottom: 6,
-          paddingTop: 6,
+          height: 58,
+          borderRadius: 29,
+          paddingBottom: 8,
+          paddingTop: 8,
           shadowColor: theme.colors.accent,
           shadowOffset: {
             width: 0,
@@ -39,19 +40,33 @@ export const MainTabNavigator = () => {
         tabBarActiveTintColor: theme.colors.textPrimary,
         tabBarInactiveTintColor: theme.colors.tabBarInactive,
         tabBarLabelStyle: {
-          fontSize: 11,
+          fontSize: 10,
           fontWeight: '700',
-          letterSpacing: 0.3,
+          letterSpacing: 0.2,
+          marginTop: 2,
+        },
+        tabBarIconStyle: {
+          marginTop: 2,
         },
       }}
     >
+      <Tab.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{
+          tabBarLabel: 'Home',
+          tabBarIcon: ({ color, focused }) => (
+            <Ionicons name={focused ? 'home' : 'home-outline'} size={24} color={color} />
+          ),
+        }}
+      />
       <Tab.Screen
         name="Book"
         component={BookScreen}
         options={{
           tabBarLabel: 'Book',
           tabBarIcon: ({ color, focused }) => (
-            <Ionicons name={focused ? 'car' : 'car-outline'} size={24} color={color} />
+            <Ionicons name={focused ? 'search' : 'search-outline'} size={24} color={color} />
           ),
         }}
       />
@@ -59,7 +74,7 @@ export const MainTabNavigator = () => {
         name="Reservations"
         component={ReservationsScreen}
         options={{
-          tabBarLabel: 'My Reservations',
+          tabBarLabel: 'Trips',
           tabBarIcon: ({ color, focused }) => (
             <Ionicons name={focused ? 'calendar' : 'calendar-outline'} size={24} color={color} />
           ),

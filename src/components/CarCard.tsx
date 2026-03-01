@@ -6,9 +6,10 @@ import { theme } from '../theme/colors';
 interface CarCardProps {
   car: CarWithListings;
   onPress: () => void;
+  onBook?: () => void;
 }
 
-export const CarCard: React.FC<CarCardProps> = ({ car, onPress }) => {
+export const CarCard: React.FC<CarCardProps> = ({ car, onPress, onBook }) => {
   const lowestPrice = car.listings.length > 0
     ? Math.min(...car.listings.map(l => l.pricePerDay))
     : 0;
@@ -21,6 +22,11 @@ export const CarCard: React.FC<CarCardProps> = ({ car, onPress }) => {
       })
     : null;
 
+  const handleBookPress = (e: any) => {
+    e.stopPropagation();
+    onBook?.();
+  };
+
   return (
     <TouchableOpacity style={styles.card} onPress={onPress} activeOpacity={0.9}>
       <View style={styles.imageContainer}>
@@ -28,6 +34,9 @@ export const CarCard: React.FC<CarCardProps> = ({ car, onPress }) => {
       </View>
 
       <View style={styles.content}>
+        <Text style={styles.vendor} numberOfLines={1}>
+          {closestListing?.vendor.name || 'Unknown Vendor'}
+        </Text>
         <Text style={styles.carName}>{`${car.make} ${car.model} ${car.year}`}</Text>
         <Text style={styles.carSubtitle}>{car.type}</Text>
 
@@ -50,6 +59,12 @@ export const CarCard: React.FC<CarCardProps> = ({ car, onPress }) => {
             <Text style={styles.priceLabel}>total</Text>
           </View>
         </View>
+
+        {onBook && (
+          <TouchableOpacity style={styles.bookButton} onPress={handleBookPress} activeOpacity={0.8}>
+            <Text style={styles.bookButtonText}>Book Now</Text>
+          </TouchableOpacity>
+        )}
       </View>
     </TouchableOpacity>
   );
@@ -75,6 +90,14 @@ const styles = StyleSheet.create({
   content: {
     padding: 16,
     paddingTop: 12,
+  },
+  vendor: {
+    fontSize: 13,
+    fontWeight: '600',
+    color: theme.colors.textMuted,
+    marginBottom: 6,
+    textTransform: 'uppercase',
+    letterSpacing: 0.5,
   },
   carName: {
     fontSize: 22,
@@ -142,5 +165,19 @@ const styles = StyleSheet.create({
   beforeTaxes: {
     fontSize: 13,
     color: theme.colors.textMuted,
+  },
+  bookButton: {
+    backgroundColor: theme.colors.accent,
+    paddingVertical: 14,
+    paddingHorizontal: 24,
+    borderRadius: 8,
+    alignItems: 'center',
+    marginTop: 16,
+  },
+  bookButtonText: {
+    fontSize: 16,
+    fontWeight: '700',
+    color: theme.colors.textOnAccent,
+    letterSpacing: 0.3,
   },
 });
