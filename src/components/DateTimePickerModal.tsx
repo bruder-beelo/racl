@@ -224,19 +224,6 @@ export const DateTimePickerModal: React.FC<DateTimePickerModalProps> = ({
               })}
             </View>
 
-            {/* Selected Dates Display */}
-            <View style={styles.selectedDatesRow}>
-              <View style={styles.selectedDateBox}>
-                <Text style={styles.selectedDateLabel}>Pickup</Text>
-                <Text style={styles.selectedDateText}>{formatDate(selectedPickupDate)}</Text>
-              </View>
-              <Ionicons name="arrow-forward" size={20} color={theme.colors.textMuted} />
-              <View style={styles.selectedDateBox}>
-                <Text style={styles.selectedDateLabel}>Dropoff</Text>
-                <Text style={styles.selectedDateText}>{formatDate(selectedDropoffDate)}</Text>
-              </View>
-            </View>
-
             {/* Time Selection */}
             <View style={styles.timeSection}>
               <View style={styles.timeRow}>
