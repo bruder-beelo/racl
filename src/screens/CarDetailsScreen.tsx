@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   Alert,
 } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RouteProp } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
@@ -30,6 +30,7 @@ export const CarDetailsScreen: React.FC<CarDetailsScreenProps> = ({ navigation, 
   const { car } = route.params;
   const listing = car.listings[0];
   const pricePerDay = listing?.pricePerDay || 0;
+  const insets = useSafeAreaInsets();
 
   // State for trip dates and times
   const [pickupDate, setPickupDate] = useState(new Date('2026-03-24'));
@@ -241,7 +242,7 @@ export const CarDetailsScreen: React.FC<CarDetailsScreenProps> = ({ navigation, 
       />
 
       {/* Floating Bottom Bar */}
-      <View style={styles.floatingBar}>
+      <View style={[styles.floatingBar, { bottom: insets.bottom + 45 }]}>
         <View style={styles.priceSection}>
           <Text style={styles.priceLabel}>Total</Text>
           <Text style={styles.price}>${totalPrice}</Text>
@@ -401,7 +402,6 @@ const styles = StyleSheet.create({
   },
   floatingBar: {
     position: 'absolute',
-    bottom: 45,
     left: 0,
     right: 0,
     flexDirection: 'row',
