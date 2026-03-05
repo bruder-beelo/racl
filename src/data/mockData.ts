@@ -1,4 +1,4 @@
-import { Car, Vendor, CarListing } from '../types';
+import { Car, Vendor, CarListing, CarWithListings } from '../types';
 
 export const cars: Car[] = [
   {
@@ -230,3 +230,178 @@ export const getCarsWithListings = () => {
     };
   });
 };
+
+// Home Screen Recommendations
+export const BEST_PRICED_CARS: CarWithListings[] = [
+  {
+    id: '1',
+    make: 'Toyota',
+    model: 'Camry',
+    year: 2023,
+    image: 'https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=800',
+    category: 'Sedan',
+    type: 'Sedan',
+    features: ['Bluetooth', 'Backup Camera', 'Apple CarPlay'],
+    specs: {
+      seats: 5,
+      transmission: 'Automatic',
+      fuelType: 'Hybrid',
+      mpg: '52 MPG',
+    },
+    listings: [{
+      id: 'l1',
+      carId: '1',
+      vendorId: 'v1',
+      pricePerDay: 45,
+      available: true,
+      distance: '2.5 mi',
+      vendor: {
+        id: 'v1',
+        name: 'Abou Ali Rental',
+        rating: 4.9,
+        reviewCount: 234,
+        tripCount: 500,
+        responseTime: '< 1 hour',
+        location: 'San Francisco, CA',
+      },
+    }],
+  },
+  {
+    id: '2',
+    make: 'Honda',
+    model: 'Civic',
+    year: 2023,
+    image: 'https://images.unsplash.com/photo-1590362891991-f776e747a588?w=800',
+    category: 'Sedan',
+    type: 'Sedan',
+    features: ['Bluetooth', 'Lane Assist', 'Adaptive Cruise'],
+    specs: {
+      seats: 5,
+      transmission: 'Automatic',
+      fuelType: 'Gas',
+      mpg: '36 MPG',
+    },
+    listings: [{
+      id: 'l2',
+      carId: '2',
+      vendorId: 'v2',
+      pricePerDay: 42,
+      available: true,
+      distance: '1.8 mi',
+      vendor: {
+        id: 'v2',
+        name: 'Alo Rental',
+        rating: 4.8,
+        reviewCount: 189,
+        tripCount: 420,
+        responseTime: '< 2 hours',
+        location: 'San Francisco, CA',
+      },
+    }],
+  },
+];
+
+export const WEEKLY_DEALS: CarWithListings[] = [
+  {
+    id: '3',
+    make: 'Jeep',
+    model: 'Wrangler',
+    year: 2023,
+    image: 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=800',
+    category: 'SUV',
+    type: 'SUV',
+    features: ['4WD', 'Off-Road Package', 'Removable Top'],
+    specs: {
+      seats: 5,
+      transmission: 'Automatic',
+      fuelType: 'Gas',
+      mpg: '22 MPG',
+    },
+    listings: [{
+      id: 'l3',
+      carId: '3',
+      vendorId: 'v3',
+      pricePerDay: 89,
+      available: true,
+      distance: '3.2 mi',
+      vendor: {
+        id: 'v3',
+        name: 'Abu Hadi Rental',
+        rating: 4.9,
+        reviewCount: 312,
+        tripCount: 650,
+        responseTime: '< 1 hour',
+        location: 'San Francisco, CA',
+      },
+    }],
+  },
+];
+
+export const LUXURY_PICKS: CarWithListings[] = [
+  {
+    id: '4',
+    make: 'BMW',
+    model: '5 Series',
+    year: 2024,
+    image: 'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800',
+    category: 'Luxury',
+    type: 'Luxury Sedan',
+    features: ['Premium Sound', 'Heated Seats', 'Panoramic Roof', 'Massage Seats'],
+    specs: {
+      seats: 5,
+      transmission: 'Automatic',
+      fuelType: 'Gas',
+      mpg: '28 MPG',
+    },
+    listings: [{
+      id: 'l4',
+      carId: '4',
+      vendorId: 'v4',
+      pricePerDay: 145,
+      available: true,
+      distance: '4.1 mi',
+      vendor: {
+        id: 'v4',
+        name: 'Abou Ali Rental',
+        rating: 5.0,
+        reviewCount: 156,
+        tripCount: 280,
+        responseTime: '< 30 min',
+        location: 'San Francisco, CA',
+      },
+    }],
+  },
+  {
+    id: '5',
+    make: 'Mercedes-Benz',
+    model: 'E-Class',
+    year: 2024,
+    image: 'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?w=800',
+    category: 'Luxury',
+    type: 'Luxury Sedan',
+    features: ['Premium Sound', 'Adaptive Suspension', 'Night Vision', 'Premium Interior'],
+    specs: {
+      seats: 5,
+      transmission: 'Automatic',
+      fuelType: 'Gas',
+      mpg: '26 MPG',
+    },
+    listings: [{
+      id: 'l5',
+      carId: '5',
+      vendorId: 'v5',
+      pricePerDay: 165,
+      available: true,
+      distance: '3.8 mi',
+      vendor: {
+        id: 'v5',
+        name: 'Alo Rental',
+        rating: 4.9,
+        reviewCount: 203,
+        tripCount: 380,
+        responseTime: '< 1 hour',
+        location: 'San Francisco, CA',
+      },
+    }],
+  },
+];
