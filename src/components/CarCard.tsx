@@ -40,18 +40,6 @@ export const CarCard: React.FC<CarCardProps> = ({ car, onPress, onBook }) => {
         <Text style={styles.carName}>{`${car.make} ${car.model} ${car.year}`}</Text>
         <Text style={styles.carSubtitle}>{car.type}</Text>
 
-        <View style={styles.ratingRow}>
-          <Text style={styles.rating}>
-            <Text style={styles.ratingNumber}>{closestListing?.vendor.rating || '5.0'}</Text>
-          </Text>
-          <Text style={styles.trips}>
-            ({closestListing?.vendor.tripCount || 0} trips)
-          </Text>
-          <View style={styles.badge}>
-            <Text style={styles.badgeText}>All-Star Host</Text>
-          </View>
-        </View>
-
         <View style={styles.priceRow}>
           <View style={styles.priceContainer}>
             <Text style={styles.strikethrough}>${Math.round(lowestPrice * 1.05)}</Text>
@@ -108,36 +96,7 @@ const styles = StyleSheet.create({
   carSubtitle: {
     fontSize: 15,
     color: theme.colors.textSecondary,
-    marginBottom: 12,
-  },
-  ratingRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
     marginBottom: 16,
-  },
-  rating: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  ratingNumber: {
-    fontSize: 15,
-    fontWeight: '600',
-    color: theme.colors.accent,
-    marginRight: 6,
-  },
-  trips: {
-    fontSize: 13,
-    color: theme.colors.textSecondary,
-    marginRight: 12,
-  },
-  badge: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  badgeText: {
-    fontSize: 11,
-    color: theme.colors.textMuted,
-    fontWeight: '500',
   },
   priceRow: {
     marginBottom: 4,
