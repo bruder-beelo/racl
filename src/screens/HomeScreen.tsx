@@ -30,7 +30,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
         {/* Header */}
         <View style={styles.header}>
           <View>
-            <Text style={styles.greeting}>Welcome back!</Text>
+            <Text style={styles.greeting}>Explore</Text>
             <Text style={styles.subtitle}>Find your perfect ride</Text>
           </View>
           <TouchableOpacity style={styles.notificationButton}>
