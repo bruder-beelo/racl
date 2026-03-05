@@ -7,48 +7,48 @@
 
 export const theme = {
   colors: {
-    // Primary accent (Coral - playful & inviting)
-    accent: '#FF6B6B',
-    accentHover: '#E85555',
-    accentLight: 'rgba(255, 107, 107, 0.15)',
-    accentBg: 'rgba(255, 107, 107, 0.1)',
-    accentBorder: 'rgba(255, 107, 107, 0.2)',
+    // Primary accent (Light Blue - playful & friendly)
+    accent: '#60A5FA',
+    accentHover: '#3B82F6',
+    accentLight: 'rgba(96, 165, 250, 0.18)',
+    accentBg: 'rgba(96, 165, 250, 0.12)',
+    accentBorder: 'rgba(96, 165, 250, 0.25)',
 
-    // Secondary accent (Blue - for alternative actions)
-    secondary: '#5B67F1',
-    secondaryBg: 'rgba(91, 103, 241, 0.1)',
-    secondaryBorder: 'rgba(91, 103, 241, 0.3)',
+    // Secondary accent (Bright Blue - for alternative actions)
+    secondary: '#38BDF8',
+    secondaryBg: 'rgba(56, 189, 248, 0.12)',
+    secondaryBorder: 'rgba(56, 189, 248, 0.3)',
 
-    // Backgrounds (light & airy)
-    background: '#FAFBFC',
+    // Backgrounds (pure white & light)
+    background: '#FFFFFF',
     surface1: '#FFFFFF',
-    surface2: '#F5F7FA',
+    surface2: '#F8FAFC',
     surface3: '#FFFFFF',
-    surface4: '#F9FAFB',
+    surface4: '#FAFBFC',
 
-    // Borders (soft & subtle)
-    border: '#E5E7EB',
-    borderLight: '#F0F2F5',
-    borderMedium: '#444444',
-    divider: 'rgba(0, 0, 0, 0.06)',
+    // Borders (soft & friendly)
+    border: '#E2E8F0',
+    borderLight: '#F1F5F9',
+    borderMedium: '#CBD5E1',
+    divider: 'rgba(0, 0, 0, 0.05)',
 
-    // Text (readable on light backgrounds)
-    textPrimary: '#1F2937',
-    textSecondary: '#6B7280',
-    textMuted: '#9CA3AF',
-    textDisabled: '#D1D5DB',
-    textDark: '#111827',
+    // Text (readable & soft)
+    textPrimary: '#1E293B',
+    textSecondary: '#64748B',
+    textMuted: '#94A3B8',
+    textDisabled: '#CBD5E1',
+    textDark: '#0F172A',
     textOnAccent: '#FFFFFF',
 
-    // Overlays & Scrims (light theme)
-    scrim: 'rgba(0, 0, 0, 0.4)',
-    scrimDark: 'rgba(0, 0, 0, 0.6)',
-    overlay: 'rgba(255, 255, 255, 0.95)',
+    // Overlays & Scrims (light & playful)
+    scrim: 'rgba(0, 0, 0, 0.35)',
+    scrimDark: 'rgba(0, 0, 0, 0.55)',
+    overlay: 'rgba(255, 255, 255, 0.96)',
     overlayLight: 'rgba(255, 255, 255, 0.05)',
     overlayBorder: 'rgba(255, 255, 255, 0.1)',
 
-    // Tab bar inactive (dark on accent)
-    tabBarInactive: 'rgba(15, 15, 16, 0.4)',
+    // Tab bar inactive (soft on light)
+    tabBarInactive: 'rgba(30, 41, 59, 0.35)',
   },
 };
 

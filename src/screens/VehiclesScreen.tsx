@@ -76,6 +76,7 @@ export const VehiclesScreen: React.FC = () => {
   const renderVehicleCard = ({ item }: { item: typeof carsWithListings[0] }) => {
     const minPrice = item.listings.length > 0 ? item.listings[0].pricePerDay : 0;
     const totalPrice = minPrice * daysDiff;
+    const vendorName = item.listings.length > 0 ? item.listings[0].vendor.name : 'Unknown Vendor';
 
     return (
       <TouchableOpacity
@@ -86,6 +87,7 @@ export const VehiclesScreen: React.FC = () => {
         <View style={styles.cardContent}>
           <View style={styles.cardHeader}>
             <View>
+              <Text style={styles.vendorName}>{vendorName}</Text>
               <Text style={styles.carName}>{item.make} {item.model}</Text>
               <Text style={styles.carCategory}>{item.category} • {item.type}</Text>
             </View>
@@ -115,7 +117,6 @@ export const VehiclesScreen: React.FC = () => {
               <Text style={styles.totalPrice}>${totalPrice}</Text>
               <Text style={styles.totalLabel}>total</Text>
             </View>
-            <Text style={styles.vendors}>{item.listings.length} vendors</Text>
           </View>
         </View>
       </TouchableOpacity>
@@ -273,6 +274,14 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'flex-start',
     marginBottom: 12,
+  },
+  vendorName: {
+    fontSize: 12,
+    fontWeight: '600',
+    color: theme.colors.textMuted,
+    marginBottom: 6,
+    textTransform: 'uppercase',
+    letterSpacing: 0.5,
   },
   carName: {
     fontSize: 18,
