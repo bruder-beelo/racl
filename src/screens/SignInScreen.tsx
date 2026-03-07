@@ -63,6 +63,8 @@ export const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
               <TouchableOpacity
                 style={styles.backButton}
                 onPress={() => navigation.goBack()}
+                accessibilityLabel="Go back"
+                accessibilityRole="button"
               >
                 <Text style={styles.backButtonText}>←</Text>
               </TouchableOpacity>
