@@ -86,25 +86,12 @@ export const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
             disabled={loading}
             activeOpacity={0.8}
           >
-<<<<<<< HEAD
-            <View style={styles.header}>
-              <TouchableOpacity
-                style={styles.backButton}
-                onPress={() => navigation.goBack()}
-                accessibilityLabel="Go back"
-                accessibilityRole="button"
-              >
-                <Text style={styles.backButtonText}>←</Text>
-              </TouchableOpacity>
-            </View>
-=======
             {loading ? (
               <ActivityIndicator color={theme.colors.textOnAccent} />
             ) : (
               <Text style={authStyles.primaryButtonText}>Sign In</Text>
             )}
           </TouchableOpacity>
->>>>>>> d2b9600 (fix shared components)
 
           <View style={authStyles.footer}>
             <Text style={authStyles.footerText}>Don't have an account? </Text>
@@ -117,4 +104,3 @@ export const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
     </AuthScreenLayout>
   );
 };
-
