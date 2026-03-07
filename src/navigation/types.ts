@@ -2,6 +2,8 @@ import { CarWithListings } from '../types';
 
 export type RootStackParamList = {
   Landing: undefined;
+  SignIn: undefined;
+  SignUp: undefined;
   MainTabs: undefined;
   Vehicles: {
     location: string;

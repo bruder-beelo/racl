@@ -4,12 +4,22 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { useAuth } from '../contexts/AuthContext';
 import { theme } from '../theme/colors';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../navigation/types';
+
+type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
 export const AccountScreen: React.FC = () => {
-  const { isAuthenticated, login, logout } = useAuth();
+  const { isAuthenticated, logout } = useAuth();
+  const navigation = useNavigation<NavigationProp>();
 
-  const handleLogin = async () => {
-    await login('user@example.com', 'password');
+  const handleLogin = () => {
+    navigation.navigate('SignIn');
+  };
+
+  const handleSignUp = () => {
+    navigation.navigate('SignUp');
   };
 
   return (
@@ -33,7 +43,7 @@ export const AccountScreen: React.FC = () => {
 
             <View style={styles.signupPrompt}>
               <Text style={styles.signupText}>Not a member? </Text>
-              <TouchableOpacity onPress={handleLogin}>
+              <TouchableOpacity onPress={handleSignUp}>
                 <Text style={styles.signupLink}>Sign up</Text>
               </TouchableOpacity>
             </View>
