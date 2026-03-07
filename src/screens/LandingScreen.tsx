@@ -70,10 +70,12 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({ navigation }) => {
     ]).start();
   }, []);
 
-  const handleSignIn = async () => {
-    // Mock sign in - just set authenticated state and navigate to MainTabs
-    await login('guest@example.com', 'password');
-    navigation.navigate('MainTabs');
+  const handleSignIn = () => {
+    navigation.navigate('SignIn');
+  };
+
+  const handleSignUp = () => {
+    navigation.navigate('SignUp');
   };
 
   const handleGuestEntry = () => {
@@ -165,7 +167,7 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({ navigation }) => {
               <TouchableOpacity
                 style={styles.secondaryButton}
                 activeOpacity={0.8}
-                onPress={handleSignIn}
+                onPress={handleSignUp}
               >
                 <Text style={styles.secondaryButtonText}>Sign Up</Text>
               </TouchableOpacity>

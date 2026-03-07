@@ -3,6 +3,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { LandingScreen } from '../screens/LandingScreen';
+import { SignInScreen } from '../screens/SignInScreen';
+import { SignUpScreen } from '../screens/SignUpScreen';
 import { MainTabNavigator } from './MainTabNavigator';
 import { VehiclesScreen } from '../screens/VehiclesScreen';
 import { CarDetailsScreen } from '../screens/CarDetailsScreen';
@@ -21,6 +23,8 @@ export const AppNavigator = () => {
           }}
         >
           <Stack.Screen name="Landing" component={LandingScreen} />
+          <Stack.Screen name="SignIn" component={SignInScreen} />
+          <Stack.Screen name="SignUp" component={SignUpScreen} />
           <Stack.Screen name="MainTabs" component={MainTabNavigator} />
           <Stack.Screen name="Vehicles" component={VehiclesScreen} />
           <Stack.Screen name="CarDetails" component={CarDetailsScreen} />
